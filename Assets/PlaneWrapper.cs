@@ -23,6 +23,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject rightTail;
 	public GameObject leftRudderPaddle;
 	public GameObject rightRudderPaddle;
+	//Canopy
+	public GameObject canopy;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +37,13 @@ public class PlaneWrapper : MonoBehaviour {
 		noseGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
 		leftGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
 		rightGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
+	}
+
+	public void ToggleCanopy(){
+		canopy.GetComponent<Animator> ().SetTrigger ("Toggle canopy");
+	}
+
+	public void ToggleHook(){
 		tailHook.GetComponent<Animator> ().SetTrigger ("Toggle hook");
 	}
 

@@ -18,6 +18,13 @@ public class TestScript : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.G)) {
 			planeWrapper.ToggleGear ();
 		}
+		if (Input.GetKeyUp (KeyCode.C)) {
+			planeWrapper.ToggleCanopy ();
+		}
+
+		if (Input.GetKeyUp (KeyCode.H)) {
+			planeWrapper.ToggleHook ();
+		}
 		planeWrapper.RotateElevator (Input.GetAxis ("Vertical")*-20);
 		planeWrapper.RotateRudder (Input.GetAxis ("Horizontal")*20);
 	}
