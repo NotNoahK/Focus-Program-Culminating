@@ -52,6 +52,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public void RotateElevator(float angle){
 		rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
+		leftElevator.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, angle/10));
+		rightElevator.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, angle/10));
 	}
 
 	public void RotateRudder(float angle){
