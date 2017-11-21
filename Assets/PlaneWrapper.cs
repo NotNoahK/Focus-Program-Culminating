@@ -25,6 +25,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject rightRudderPaddle;
 	//Canopy
 	public GameObject canopy;
+	public GameObject frontSeat;
+	public GameObject backSeat;
 
 	// Use this for initialization
 	void Start () {
@@ -55,5 +57,11 @@ public class PlaneWrapper : MonoBehaviour {
 	public void RotateRudder(float angle){
 		rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
 		leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
+	}
+
+	public void Eject(){
+		canopy.SetActive (false);
+		frontSeat.GetComponent<Eject> ().Fire (5);
+		backSeat.GetComponent<Eject> ().Fire (0);
 	}
 }
