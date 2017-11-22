@@ -28,7 +28,11 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject canopy;
 	public GameObject frontSeat;
 	public GameObject backSeat;
+	//Engine
+	public GameObject leftEngine;
+	public GameObject rightEngine;
 
+	public int throttleCorrection = 10;
 	public GameObject fuselage;
 	public int throttleMultiplier;
 	public int maxPitchForce;
@@ -37,13 +41,17 @@ public class PlaneWrapper : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		fuselage.GetComponent<Rigidbody> ().centerOfMass = fuselage.transform.Find ("COM").transform.position;
+//		fuselage.GetComponent<Rigidbody> ().centerOfMass = fuselage.transform.Find ("COM").transform.position;
+//		fuselage.GetComponent<Rigidbody>().centerOfMass = fuselage.transform.Find ("COM").transform.position - fuselage.transform.position;
 	}
 
 	void Update(){
+//		fuselage.GetComponent<Rigidbody>().centerOfMass = new Vector3(0,0,-2);\
+//		fuselage.GetComponent<Rigidbody>().centerOfMass = fuselage.transform.Find ("COM").transform.position - fuselage.transform.position;
 		speed = fuselage.gameObject.GetComponent<Rigidbody> ().velocity.x;
 //		Debug.DrawLine(fuselage.transform.position+fuselage.GetComponent<Rigidbody>().centerOfMass, fuselage.transform.position+fuselage.GetComponent<Rigidbody>().velocity);
 		Debug.DrawLine(fuselage.transform.position+fuselage.GetComponent<Rigidbody>().centerOfMass, Vector3.zero);
+//		Debug.DrawLine(GetComponent<Rigidbody>().centerOfMass, Vector3.zero);
 	}
 
 	public void ToggleGear(){
@@ -77,6 +85,10 @@ public class PlaneWrapper : MonoBehaviour {
 
 	public void Propel(float throttle){
 		fuselage.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (throttle * throttleMultiplier, 0, 0));
+//		leftElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(throttle*500, 0, 0));
+//		rightElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(throttle*500, 0, 0));
+//		leftEngine.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(throttle*throttleMultiplier, 0, 0));
+//		rightEngine.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(throttle*throttleMultiplier, 0, 0));
 	}
 
 	public void Eject(){

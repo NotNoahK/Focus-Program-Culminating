@@ -15,18 +15,18 @@ public class TestScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyUp (KeyCode.G)) {
+		if (Input.GetKeyUp (KeyCode.G) || Input.GetAxis ("Jump") > 0.5) {
 			planeWrapper.ToggleGear ();
 		}
-		if (Input.GetKeyUp (KeyCode.C)) {
+		if (Input.GetKeyUp (KeyCode.C) || Input.GetAxis ("Fire3") > 0.5) {
 			planeWrapper.ToggleCanopy ();
 		}
 
-		if (Input.GetKeyUp (KeyCode.H)) {
+		if (Input.GetKeyUp (KeyCode.H) || Input.GetAxis ("Fire2") > 0.5) {
 			planeWrapper.ToggleHook ();
 		}
 
-		if (Input.GetKeyUp (KeyCode.E)) {
+		if (Input.GetKeyUp (KeyCode.E) || (Input.GetAxis ("Fire1") > 0.5 && !Input.GetButton("mouse 0"))) {
 			planeWrapper.Eject ();
 		}
 
