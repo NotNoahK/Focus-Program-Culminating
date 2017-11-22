@@ -24,6 +24,9 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject rightTail;
 	public GameObject leftRudderPaddle;
 	public GameObject rightRudderPaddle;
+	//Ailerons
+	public GameObject leftAileron;
+	public GameObject rightAileron;
 	//Canopy
 	public GameObject canopy;
 	public GameObject frontSeat;
@@ -48,9 +51,9 @@ public class PlaneWrapper : MonoBehaviour {
 	void Update(){
 //		fuselage.GetComponent<Rigidbody>().centerOfMass = new Vector3(0,0,-2);\
 //		fuselage.GetComponent<Rigidbody>().centerOfMass = fuselage.transform.Find ("COM").transform.position - fuselage.transform.position;
-		speed = fuselage.gameObject.GetComponent<Rigidbody> ().velocity.x;
+		speed = GetComponent<Rigidbody> ().velocity.x;
 //		Debug.DrawLine(fuselage.transform.position+fuselage.GetComponent<Rigidbody>().centerOfMass, fuselage.transform.position+fuselage.GetComponent<Rigidbody>().velocity);
-		Debug.DrawLine(fuselage.transform.position+fuselage.GetComponent<Rigidbody>().centerOfMass, Vector3.zero);
+		Debug.DrawLine(transform.position+GetComponent<Rigidbody>().centerOfMass, Vector3.zero);
 //		Debug.DrawLine(GetComponent<Rigidbody>().centerOfMass, Vector3.zero);
 	}
 
@@ -73,9 +76,11 @@ public class PlaneWrapper : MonoBehaviour {
 		rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		float pitchForce = Mathf.Clamp(-angle * pitchMultiplier * speed, -maxPitchForce, maxPitchForce);
-		print (pitchForce);
-		leftElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
-		rightElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
+		GetComponent<Rigidbody> ().AddForceAtPosition (Vector3.up*pitchForce, rightElevator.transform.position);
+		GetComponent<Rigidbody> ().AddForceAtPosition (Vector3.up*pitchForce, rightElevator.transform.position);
+//		print (pitchForce);
+//		leftElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
+//		rightElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
 	}
 
 	public void RotateRudder(float angle){
@@ -84,7 +89,7 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	public void Propel(float throttle){
-		fuselage.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (throttle * throttleMultiplier, 0, 0));
+		GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (throttle * throttleMultiplier, 0, 0));
 //		leftElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(throttle*500, 0, 0));
 //		rightElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(throttle*500, 0, 0));
 //		leftEngine.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(throttle*throttleMultiplier, 0, 0));
