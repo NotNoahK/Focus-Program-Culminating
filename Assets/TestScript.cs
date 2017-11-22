@@ -31,6 +31,6 @@ public class TestScript : MonoBehaviour {
 		}
 
 		planeWrapper.RotateElevator (Input.GetAxis ("Vertical")*-20);
-		planeWrapper.RotateRudder (Input.GetAxis ("Horizontal")*20);
+		planeWrapper.Propel (Input.GetAxis ("Horizontal"));
 	}
 }

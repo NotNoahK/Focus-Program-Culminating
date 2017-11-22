@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38074008, b: 0.35872707, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872692, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -15333,7 +15333,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1142076278}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 185.8194, y: -123.4297, z: -2.273737e-13}
+  m_LocalPosition: {x: 221.1, y: -123.4297, z: -2.273737e-13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1626951696}
@@ -15357,7 +15357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noseGear: {fileID: 315051859}
   leftGear: {fileID: 134145667}
-  rightGear: {fileID: 0}
+  rightGear: {fileID: 549215627}
   noseGearWorking: 0
   leftGearWorking: 0
   rightGearWorking: 0
@@ -15365,6 +15365,7 @@ MonoBehaviour:
   tailHookWorking: 1
   leftElevator: {fileID: 1436828974}
   rightElevator: {fileID: 740369394}
+  pitchMultiplier: 10
   leftTail: {fileID: 523503775}
   rightTail: {fileID: 2008174538}
   leftRudderPaddle: {fileID: 970645231}
@@ -15372,6 +15373,9 @@ MonoBehaviour:
   canopy: {fileID: 1890906976}
   frontSeat: {fileID: 1577391731}
   backSeat: {fileID: 767416537}
+  fuselage: {fileID: 1468821002}
+  throttleMultiplier: 5000
+  speed: 0
 --- !u!1 &1144365364
 GameObject:
   m_ObjectHideFlags: 0
@@ -21915,7 +21919,7 @@ Transform:
   m_GameObject: {fileID: 1654938902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3298.9006, y: -13.600029, z: 0.000061035156}
-  m_LocalScale: {x: 7092.758, y: 1, z: 150.96204}
+  m_LocalScale: {x: 7092.758, y: 1, z: 531.37634}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -22534,7 +22538,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1701967888}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -137.1, y: 98.3, z: 0}
+  m_LocalPosition: {x: -137.1, y: -8.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1142076279}
@@ -23317,14 +23321,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1759004393}
-  m_LocalRotation: {x: -0.23271878, y: -0.2327186, z: 0.66771406, w: 0.66771406}
+  m_LocalRotation: {x: 0.022580832, y: 0.02258083, z: 0.70674616, w: 0.7067461}
   m_LocalPosition: {x: -266.64, y: 123.0079, z: 28.512447}
   m_LocalScale: {x: 1, y: 1.2500048, z: 1}
   m_Children:
   - {fileID: 925645559}
   m_Father: {fileID: 1468821003}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: -38.43, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 0, y: 3.66, z: 90.00001}
 --- !u!95 &1759004395
 Animator:
   serializedVersion: 3

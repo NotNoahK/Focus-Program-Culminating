@@ -18,6 +18,7 @@ public class PlaneWrapper : MonoBehaviour {
 	//Elevators
 	public GameObject leftElevator;
 	public GameObject rightElevator;
+	public int pitchMultiplier;
 	//Rudders, paddles are the control surfaces themselves
 	public GameObject leftTail;
 	public GameObject rightTail;
@@ -28,11 +29,19 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject frontSeat;
 	public GameObject backSeat;
 
+	public GameObject fuselage;
+	public int throttleMultiplier;
+
+	public float speed;
+
 	// Use this for initialization
 	void Start () {
 		
 	}
 
+	void Update(){
+		speed = fuselage.gameObject.GetComponent<Rigidbody> ().velocity.x;
+	}
 
 	public void ToggleGear(){
 		print ("Toggle Gear");
@@ -52,13 +61,19 @@ public class PlaneWrapper : MonoBehaviour {
 	public void RotateElevator(float angle){
 		rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
-		leftElevator.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, angle/10));
-		rightElevator.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, angle/10));
+		float pitchForce = Mathf.Clamp(-angle * pitchMultiplier * speed, -50, 50);
+		print (pitchForce);
+		leftElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
+		rightElevator.transform.parent.gameObject.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3(0, 0, pitchForce));
 	}
 
 	public void RotateRudder(float angle){
 		rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
 		leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
+	}
+
+	public void Propel(float throttle){
+		fuselage.GetComponent<Rigidbody> ().AddRelativeForce (new Vector3 (throttle * throttleMultiplier, 0, 0));
 	}
 
 	public void Eject(){
