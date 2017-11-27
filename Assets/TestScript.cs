@@ -30,7 +30,9 @@ public class TestScript : MonoBehaviour {
 			planeWrapper.Eject ();
 		}
 
+		planeWrapper.Propel (-1);
+
 		planeWrapper.RotateElevator (Input.GetAxis ("Vertical")*-20);
-		planeWrapper.Propel (Input.GetAxis ("Horizontal"));
+		planeWrapper.RollAileron (Input.GetAxis ("Horizontal")*20);
 	}
 }

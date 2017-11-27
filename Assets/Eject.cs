@@ -6,7 +6,7 @@ public class Eject : MonoBehaviour {
 
 	Rigidbody body;
 	bool fired = false;
-	int maxTimer = 20;
+	int maxTimer = 30;
 	int timer;
 
 	void Start(){
@@ -24,9 +24,9 @@ public class Eject : MonoBehaviour {
 			}
 			if (timer < maxTimer) {
 				if (timer > 0)
-					body.AddRelativeForce (new Vector3 (0, 0, (Mathf.Abs (timer - maxTimer)+10)*20));
+					body.AddForce (transform.forward*(Mathf.Abs (timer - maxTimer)+10)*2000);
 				//Wait until canopy is cleared
-				if (timer == maxTimer - 10)
+				if (timer == maxTimer - 2)
 					GetComponent<MeshCollider> ().enabled = true;
 			}
 			if (timer == 0) {
