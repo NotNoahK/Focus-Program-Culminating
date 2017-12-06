@@ -44,9 +44,14 @@ public class PlaneWrapper : MonoBehaviour {
 	public int throttleMultiplier;
 	public int maxPitchForce;
 
+	public int maxLiftForce;
+	public float liftMultiplier;
+
 	public GameObject leftWing;
 	public GameObject rightWing;
 	public GameObject col;
+
+	public float vSpeed;
 
 	Rigidbody body;
 
@@ -59,8 +64,13 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	void Update(){
-		speed = body.velocity.x;
+		vSpeed = body.velocity.y;
+		speed = transform.InverseTransformDirection(body.velocity).x;
+		if (speed < 1)
+			speed = 0;
 		body.AddForceAtPosition (-transform.forward * noseWeight, noseCouterWeight.transform.position);
+		Lift ();
+		Glide ();
 	}
 
 	public void ToggleGear(){
@@ -78,23 +88,27 @@ public class PlaneWrapper : MonoBehaviour {
 		tailHook.GetComponent<Animator> ().SetTrigger ("Toggle hook");
 	}
 
-	public void RotateElevator(float angle){
+	public void Pitch(float angle){
 		rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		float pitchForce = Mathf.Clamp(-angle * pitchMultiplier * speed, -maxPitchForce, maxPitchForce);
 		body.AddForceAtPosition (transform.forward*pitchForce, rightElevator.transform.position);
-		body.AddForceAtPosition (transform.forward, leftElevator.transform.position);
+		body.AddForceAtPosition (transform.forward*pitchForce, leftElevator.transform.position);
+
+
+		body.AddForceAtPosition (-transform.forward*pitchForce, noseCouterWeight.transform.position);		
+		Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position+transform.forward*pitchForce*10);
 
 		Debug.DrawLine (rightElevator.transform.position, rightElevator.transform.position+transform.forward*pitchForce*10);
 		Debug.DrawLine (leftElevator.transform.position, leftElevator.transform.position+transform.forward*pitchForce*10);
 	}
 
-	public void RotateRudder(float angle){
+	public void Yaw(float angle){
 		rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
 		leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
 	}
 
-	public void RollAileron(float angle){
+	public void Roll(float angle){
 		leftAileron.transform.localEulerAngles = new Vector3 (0, -angle, 0);
 		rightAileron.transform.localEulerAngles = new Vector3 (0, angle, 0);
 		float rollForce = Mathf.Clamp(-angle * rollMultiplier * speed, -maxRollForce, maxRollForce);
@@ -124,9 +138,22 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	void Lift(){
-		float liftForce = transform.forward*5;
-		body.AddForceAtPosition (liftForce, leftWing.transform.position);
-		body.AddForceAtPosition (liftForce, rightWing.transform.position);
-		body.AddForceAtPosition (-liftForce*2, col.transform.position);
+		float liftForce = Mathf.Clamp(speed*liftMultiplier, 0, maxLiftForce);
+		print (liftForce);
+		body.AddForceAtPosition (liftForce*transform.forward, leftAileron.transform.position);
+		body.AddForceAtPosition (liftForce*transform.forward, rightAileron.transform.position);
+		body.AddForceAtPosition (-maxLiftForce*1.5f*transform.forward, col.transform.position);
+		Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position + liftForce * transform.forward*10);
+		Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+liftForce*transform.forward*10);
+		Debug.DrawLine (col.transform.position, col.transform.position-maxLiftForce*1.5f*transform.forward*10);
+	}
+
+	void Glide(){
+		float glideForce = Mathf.Clamp(-vSpeed, -300, 200);
+		body.AddForceAtPosition (glideForce*transform.right, leftAileron.transform.position);
+		body.AddForceAtPosition (glideForce*transform.right, rightAileron.transform.position);
+		Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position + glideForce * transform.right*10);
+		Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+glideForce*transform.right*10);
+
 	}
 }
