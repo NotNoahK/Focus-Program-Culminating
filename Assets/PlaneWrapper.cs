@@ -18,7 +18,6 @@ public class PlaneWrapper : MonoBehaviour {
 	//Elevators
 	public GameObject leftElevator;
 	public GameObject rightElevator;
-	public int pitchMultiplier;
 	//Rudders, paddles are the control surfaces themselves
 	public GameObject leftTail;
 	public GameObject rightTail;
@@ -27,8 +26,6 @@ public class PlaneWrapper : MonoBehaviour {
 	//Ailerons
 	public GameObject leftAileron;
 	public GameObject rightAileron;
-	public int rollMultiplier;
-	public int maxRollForce;
 	//Canopy
 	public GameObject canopy;
 	public GameObject frontSeat;
@@ -37,15 +34,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject leftEngine;
 	public GameObject rightEngine;
 
-	public int throttleCorrection = 10;
 	public GameObject fuselage;
 	public GameObject noseCouterWeight;
-	public float noseWeight;
-	public int throttleMultiplier;
-	public int maxPitchForce;
-
-	public int maxLiftForce;
-	public float liftMultiplier;
 
 	public GameObject leftWing;
 	public GameObject rightWing;
@@ -55,8 +45,18 @@ public class PlaneWrapper : MonoBehaviour {
 
 	Rigidbody body;
 
-
 	public float speed;
+
+
+
+	public float rollMultiplier;
+	public float maxRollForce;
+	public float pitchMultiplier;
+	public float maxPitchForce;
+	public float noseWeight;
+	public float maxLiftForce;
+	public float liftMultiplier;
+	public float throttleMultiplier;
 
 	// Use this for initialization
 	void Start () {
