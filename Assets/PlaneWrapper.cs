@@ -167,9 +167,12 @@ public class PlaneWrapper : MonoBehaviour {
 			Debug.DrawLine (leftEngine.transform.position, leftEngine.transform.position + (-transform.right * throttleForce) * 1);
 			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (throttle);
+			print(throttle);
+			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
 		} else {
 			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (0);
+			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
 		}
 		//Right Engine
 		if (rightEngineWorking) {
@@ -177,9 +180,11 @@ public class PlaneWrapper : MonoBehaviour {
 			Debug.DrawLine (rightEngine.transform.position, rightEngine.transform.position+(-transform.right * throttleForce)*1);
 			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs(throttle);
+			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
 		} else {
 			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (0);
+			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
 		}
 	}
 
