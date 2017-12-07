@@ -2263,7 +2263,6 @@ GameObject:
   - component: {fileID: 20669485064518166}
   - component: {fileID: 92940960715248254}
   - component: {fileID: 124269042917415972}
-  - component: {fileID: 81931294206576660}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -8075,7 +8074,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488848031651028}
   m_LocalRotation: {x: -0.7071068, y: 0.00000002980233, z: 0.00000002980233, w: 0.7071068}
-  m_LocalPosition: {x: -15693, y: 8057, z: 0}
+  m_LocalPosition: {x: 1841.23, y: 45.53, z: -5.89}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4493350727043100}
@@ -10065,8 +10064,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654456969629884}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 174974, y: -123, z: -78684}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 175.8, y: -124, z: -43.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4655665766915416}
@@ -25292,13 +25291,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1867466259081140}
   m_Enabled: 1
---- !u!81 &81931294206576660
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1310052632951678}
-  m_Enabled: 1
 --- !u!92 &92127030441837704
 Behaviour:
   m_ObjectHideFlags: 1
@@ -25857,11 +25849,7 @@ MonoBehaviour:
   noseGear: {fileID: 1915034590331312}
   leftGear: {fileID: 1798546731924344}
   rightGear: {fileID: 1275791479124096}
-  noseGearWorking: 1
-  leftGearWorking: 1
-  rightGearWorking: 1
   tailHook: {fileID: 1252090271605806}
-  tailHookWorking: 1
   leftElevator: {fileID: 1208611146055128}
   rightElevator: {fileID: 1899758177613796}
   leftTail: {fileID: 1612534560638500}
@@ -25890,6 +25878,19 @@ MonoBehaviour:
   maxLiftForce: 0.5
   liftMultiplier: 0.0005
   throttleMultiplier: 50
+  noseGearWorking: 1
+  leftGearWorking: 1
+  rightGearWorking: 1
+  leftWingWorking: 1
+  rightWingWorking: 1
+  leftAileronWorking: 1
+  rightAileronWorking: 1
+  leftRudderWorking: 1
+  rightRudderWorking: 1
+  leftElevatorWorking: 1
+  rightElevatorWorking: 1
+  leftEngineWorking: 1
+  rightEngineWorking: 1
 --- !u!124 &124269042917415972
 Behaviour:
   m_ObjectHideFlags: 1
