@@ -247,7 +247,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 343221600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -450,7 +450,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1071685552245404, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224534313236376706, guid: b7a0c3f7af9125b42a974182f9c9462c,
         type: 2}
@@ -465,7 +465,7 @@ Prefab:
     - target: {fileID: 224534313236376706, guid: b7a0c3f7af9125b42a974182f9c9462c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 1.1
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 224534313236376706, guid: b7a0c3f7af9125b42a974182f9c9462c,
         type: 2}
@@ -681,7 +681,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &1874545868
 TerrainCollider:
   m_ObjectHideFlags: 0
