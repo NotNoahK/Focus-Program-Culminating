@@ -353,6 +353,25 @@ MonoBehaviour:
   working: 1
   attached: 1
   health: 500
+--- !u!1 &811861051 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1860930632628340, guid: b7a0c3f7af9125b42a974182f9c9462c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1561760374}
+--- !u!64 &811861055
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811861051}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300072, guid: 6af41cb58d4feeb47802f412bd0cf6ad, type: 3}
 --- !u!1 &873950796
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,6 +473,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195937412 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114962129762840296, guid: b7a0c3f7af9125b42a974182f9c9462c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1561760374}
+  m_Script: {fileID: 11500000, guid: b00e2e9baad5a9a4685fecc9d1c98d9e, type: 3}
+--- !u!1 &1223330144 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1490092897107798, guid: b7a0c3f7af9125b42a974182f9c9462c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1561760374}
+--- !u!64 &1223330148
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1223330144}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300072, guid: 6af41cb58d4feeb47802f412bd0cf6ad, type: 3}
 --- !u!1 &1269465176 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1421589367217824, guid: b7a0c3f7af9125b42a974182f9c9462c,
@@ -796,6 +840,11 @@ Prefab:
       propertyPath: leftWing
       value: 
       objectReference: {fileID: 546044085}
+    - target: {fileID: 114747561142057074, guid: b7a0c3f7af9125b42a974182f9c9462c,
+        type: 2}
+      propertyPath: planeWrapper
+      value: 
+      objectReference: {fileID: 1195937412}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
   m_IsPrefabParent: 0
