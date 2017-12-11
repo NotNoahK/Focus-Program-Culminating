@@ -10,15 +10,10 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject noseGear;
 	public GameObject leftGear;
 	public GameObject rightGear;
-	public bool noseGearWorking = true;
-	public bool leftGearWorking = true;
-	public bool rightGearWorking = true;
 	public GameObject tailHook;
-	public bool tailHookWorking = true;
 	//Elevators
 	public GameObject leftElevator;
 	public GameObject rightElevator;
-	public int pitchMultiplier;
 	//Rudders, paddles are the control surfaces themselves
 	public GameObject leftTail;
 	public GameObject rightTail;
@@ -27,8 +22,6 @@ public class PlaneWrapper : MonoBehaviour {
 	//Ailerons
 	public GameObject leftAileron;
 	public GameObject rightAileron;
-	public int rollMultiplier;
-	public int maxRollForce;
 	//Canopy
 	public GameObject canopy;
 	public GameObject frontSeat;
@@ -37,21 +30,43 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject leftEngine;
 	public GameObject rightEngine;
 
-	public int throttleCorrection = 10;
 	public GameObject fuselage;
 	public GameObject noseCouterWeight;
-	public float noseWeight;
-	public int throttleMultiplier;
-	public int maxPitchForce;
 
 	public GameObject leftWing;
 	public GameObject rightWing;
 	public GameObject col;
 
+	public float vSpeed;
+
 	Rigidbody body;
 
-
 	public float speed;
+
+
+
+	public float rollMultiplier;
+	public float maxRollForce;
+	public float pitchMultiplier;
+	public float maxPitchForce;
+	public float noseWeight;
+	public float maxLiftForce;
+	public float liftMultiplier;
+	public float throttleMultiplier;
+
+	public bool noseGearWorking = true;
+	public bool leftGearWorking = true;
+	public bool rightGearWorking = true;
+	public bool leftWingWorking = true;
+	public bool rightWingWorking = true;
+	public bool leftAileronWorking = true;
+	public bool rightAileronWorking = true;
+	public bool leftRudderWorking = true;
+	public bool rightRudderWorking = true;
+	public bool leftElevatorWorking = true;
+	public bool rightElevatorWorking = true;
+	public bool leftEngineWorking = true;
+	public bool rightEngineWorking = true;
 
 	// Use this for initialization
 	void Start () {
@@ -59,15 +74,23 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	void Update(){
-		speed = body.velocity.x;
+		vSpeed = body.velocity.y;
+		speed = transform.InverseTransformDirection(body.velocity).x;
+		if (speed < 1)
+			speed = 0;
 		body.AddForceAtPosition (-transform.forward * noseWeight, noseCouterWeight.transform.position);
+		Lift ();
+		Glide ();
 	}
 
 	public void ToggleGear(){
 		print ("Toggle Gear");
-		noseGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
-		leftGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
-		rightGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
+		if(noseGearWorking)
+			noseGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
+		if(leftGearWorking)
+			leftGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
+		if(rightGearWorking)
+			rightGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
 	}
 
 	public void ToggleCanopy(){
@@ -78,42 +101,91 @@ public class PlaneWrapper : MonoBehaviour {
 		tailHook.GetComponent<Animator> ().SetTrigger ("Toggle hook");
 	}
 
-	public void RotateElevator(float angle){
-		rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
-		leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
+	public void Pitch(float angle){
+		//Calculate Force
 		float pitchForce = Mathf.Clamp(-angle * pitchMultiplier * speed, -maxPitchForce, maxPitchForce);
-		body.AddForceAtPosition (transform.forward*pitchForce, rightElevator.transform.position);
-		body.AddForceAtPosition (transform.forward, leftElevator.transform.position);
 
-		Debug.DrawLine (rightElevator.transform.position, rightElevator.transform.position+transform.forward*pitchForce*10);
-		Debug.DrawLine (leftElevator.transform.position, leftElevator.transform.position+transform.forward*pitchForce*10);
+		//Right Elevator
+		if (rightElevatorWorking) {
+			rightElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
+			body.AddForceAtPosition (transform.forward * pitchForce, rightElevator.transform.position);
+			Debug.DrawLine (rightElevator.transform.position, rightElevator.transform.position+transform.forward*pitchForce*10);
+		}
+		//Left Elevator
+		if (leftElevatorWorking) {
+			leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
+			body.AddForceAtPosition (transform.forward * pitchForce, leftElevator.transform.position);	
+			Debug.DrawLine (leftElevator.transform.position, leftElevator.transform.position+transform.forward*pitchForce*10);
+		}
+		//Nose Cone Conterbalance
+		if (leftElevatorWorking) {
+			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);		
+			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position + transform.forward * pitchForce * 5);
+		}
+		if (rightElevatorWorking) {
+			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);		
+			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position + transform.forward * pitchForce * 5);
+		}
 	}
 
-	public void RotateRudder(float angle){
-		rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
-		leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
+	public void Yaw(float angle){
+		//Left Rudder
+		if (leftRudderWorking) {	
+			leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
+		}
+		//Right Rudder
+		if (rightRudderWorking) {
+			rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
+		}
 	}
 
-	public void RollAileron(float angle){
-		leftAileron.transform.localEulerAngles = new Vector3 (0, -angle, 0);
-		rightAileron.transform.localEulerAngles = new Vector3 (0, angle, 0);
+	public void Roll(float angle){
+		//Calculate Force
 		float rollForce = Mathf.Clamp(-angle * rollMultiplier * speed, -maxRollForce, maxRollForce);
-//		print(rollForce);
-//		rollForce = 0;
-		print(transform.up);
-		body.AddForceAtPosition (-transform.forward*rollForce, leftAileron.transform.position);
-		body.AddForceAtPosition (transform.forward*rollForce, rightAileron.transform.position);
-		Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+transform.forward*rollForce*10);
-		Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position-transform.forward*rollForce*10);
+
+		//Left Aileron
+		if (leftAileronWorking) {
+			leftAileron.transform.localEulerAngles = new Vector3 (0, -angle, 0);
+			body.AddForceAtPosition (-transform.forward * rollForce, leftAileron.transform.position);
+			Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position-transform.forward*rollForce*10);
+		}
+		//Right Aileron
+		if (rightAileronWorking) {
+			rightAileron.transform.localEulerAngles = new Vector3 (0, angle, 0);
+			body.AddForceAtPosition (transform.forward * rollForce, rightAileron.transform.position);
+			Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+transform.forward*rollForce*10);
+		}
 	}
 
 	public void Propel(float throttle){
+		//Calculate Force
 		float throttleForce = throttle * throttleMultiplier;
-		body.AddForceAtPosition (-transform.right * throttleForce, leftEngine.transform.position);
-		body.AddForceAtPosition (-transform.right * throttleForce, rightEngine.transform.position);
-//		print(rightEngine.transform.position);
-		Debug.DrawLine (rightEngine.transform.position, rightEngine.transform.position+(-transform.right * throttleForce)*1);
-		Debug.DrawLine (leftEngine.transform.position, leftEngine.transform.position+(-transform.right * throttleForce)*1);
+
+		//Left Engine
+		if (leftEngineWorking) {
+			body.AddForceAtPosition (-transform.right * throttleForce, leftEngine.transform.position);
+			Debug.DrawLine (leftEngine.transform.position, leftEngine.transform.position + (-transform.right * throttleForce) * 1);
+			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
+			main.startLifetime = Mathf.Abs (throttle);
+			print(throttle);
+			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
+		} else {
+			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
+			main.startLifetime = Mathf.Abs (0);
+			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
+		}
+		//Right Engine
+		if (rightEngineWorking) {
+			body.AddForceAtPosition (-transform.right * throttleForce, rightEngine.transform.position);
+			Debug.DrawLine (rightEngine.transform.position, rightEngine.transform.position+(-transform.right * throttleForce)*1);
+			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
+			main.startLifetime = Mathf.Abs(throttle);
+			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
+		} else {
+			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
+			main.startLifetime = Mathf.Abs (0);
+			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
+		}
 	}
 
 	public void Eject(){
@@ -124,9 +196,40 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	void Lift(){
-		float liftForce = transform.forward*5;
-		body.AddForceAtPosition (liftForce, leftWing.transform.position);
-		body.AddForceAtPosition (liftForce, rightWing.transform.position);
-		body.AddForceAtPosition (-liftForce*2, col.transform.position);
+		//Calculate Force
+		float liftForce = Mathf.Clamp(speed*liftMultiplier, 0, maxLiftForce);
+		//Left Wing
+		if (leftWingWorking) {
+			body.AddForceAtPosition (liftForce*transform.forward, leftAileron.transform.position);
+			Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position + liftForce * transform.forward*10);
+		}
+		//Right Wing
+		if (rightWingWorking) {
+			body.AddForceAtPosition (liftForce*transform.forward, rightAileron.transform.position);
+			Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+liftForce*transform.forward*10);
+		}
+		//Center Downforce
+		body.AddForceAtPosition (-maxLiftForce*1.5f*transform.forward, col.transform.position);
+		Debug.DrawLine (col.transform.position, col.transform.position-maxLiftForce*1.5f*transform.forward*10);
+	}
+
+	void Glide(){
+		//Calculate Force
+		float glideForce = Mathf.Clamp(-vSpeed, -300, 200);
+		//Remove glide when vertical
+		if (transform.localEulerAngles.y > 240 && transform.localEulerAngles.y < 300) {
+			glideForce = -Mathf.Abs(glideForce);
+		}
+		//Left Wing
+		if (leftWingWorking) {
+			body.AddForceAtPosition (glideForce*transform.right, leftAileron.transform.position);
+			Debug.DrawLine (leftAileron.transform.position, leftAileron.transform.position + glideForce * transform.right*10);
+		}
+		//Right Wing
+		if (rightWingWorking) {
+			body.AddForceAtPosition (glideForce*transform.right, rightAileron.transform.position);
+			Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+glideForce*transform.right*10);
+		}
 	}
 }
+	
