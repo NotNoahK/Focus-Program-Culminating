@@ -7,7 +7,7 @@ public class PassCollision : MonoBehaviour {
 	public Part target;
 
 	void Start(){
-		print("Start");
+		print("Start" + GetComponent<Collider>());
 	}
 
 	void OnCollisionEnter(Collision collision){
