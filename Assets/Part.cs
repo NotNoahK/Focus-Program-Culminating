@@ -15,6 +15,9 @@ public class Part : MonoBehaviour{
 			collider.gameObject.AddComponent <PassCollision>();
 			collider.gameObject.GetComponent <PassCollision> ().target = this;
 		}
+		if (health <= 0) {
+			Detach ();
+		}
 	}
 
 	void GetCollider (){
