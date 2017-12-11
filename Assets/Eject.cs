@@ -20,18 +20,18 @@ public class Eject : MonoBehaviour {
 			if (timer == maxTimer) {
 				gameObject.AddComponent<Rigidbody> ();
 				body = GetComponent<Rigidbody> ();
-				body.AddRelativeForce (new Vector3 (0, 0, 500));
+				body.AddRelativeForce (new Vector3 (0, 0, 50));
 			}
 			if (timer < maxTimer) {
 				if (timer > 0)
-					body.AddForce (transform.forward*(Mathf.Abs (timer - maxTimer)+10)*2000);
+					body.AddForce (transform.forward*(Mathf.Abs (timer - maxTimer)+10)*50);
 				//Wait until canopy is cleared
 				if (timer == maxTimer - 2)
 					GetComponent<MeshCollider> ().enabled = true;
 			}
 			if (timer == 0) {
-				body.drag = 2;
-				body.angularDrag = 5;
+				body.drag = 0.5f;
+				body.angularDrag = 0.5f;
 			}
 		}
 		
