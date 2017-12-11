@@ -155,7 +155,7 @@ public class PlaneWrapper : MonoBehaviour {
 			Debug.DrawLine (leftEngine.transform.position, leftEngine.transform.position + (-transform.right * throttleForce) * 1);
 			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (throttle);
-			print(throttle);
+//			print(throttle);
 			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
 		} else {
 			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
