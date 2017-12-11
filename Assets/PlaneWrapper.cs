@@ -53,6 +53,7 @@ public class PlaneWrapper : MonoBehaviour {
 	public float maxLiftForce;
 	public float liftMultiplier;
 	public float throttleMultiplier;
+	public float dragForce;
 
 	public bool noseGearWorking = true;
 	public bool leftGearWorking = true;
@@ -79,6 +80,7 @@ public class PlaneWrapper : MonoBehaviour {
 		if (speed < 1)
 			speed = 0;
 		body.AddForceAtPosition (-transform.forward * noseWeight, noseCouterWeight.transform.position);
+		body.AddForceAtPosition (-transform.right * dragForce, noseCouterWeight.transform.position);
 		Lift ();
 		Glide ();
 	}
