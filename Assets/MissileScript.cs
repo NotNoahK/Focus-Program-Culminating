@@ -15,6 +15,10 @@ public class MissileScript : MonoBehaviour {
 	public int lifetime = 0;
 	public int maxSpeed;
 	PlaneWrapper plane;
+	public ParticleSystem explosion;
+	bool destroyed = false;
+	/// How long the missile is propelled for
+	public int maxFuel;
 
 	// Use this for initialization
 	void Start () {
@@ -26,9 +30,23 @@ public class MissileScript : MonoBehaviour {
 	void Update () {
 		if(Input.GetKey(KeyCode.Alpha1))
 			Fire();
-		if (fired) {
+		if (destroyed) {
 			lifetime++;
-			body.AddForce (transform.right * accel);
+			if (lifetime == 50) 
+				gameObject.SetActive (false);
+			transform.Find ("Model").gameObject.SetActive (false);
+			body.velocity = Vector3.zero;
+			body.isKinematic = true;
+			collider.enabled = false;
+		}
+		else if (fired) {
+			lifetime++;
+			if (lifetime < maxFuel) {
+				body.AddForce (transform.right * accel);
+			}
+			if (lifetime > maxFuel) {
+				engine.GetComponent<ParticleSystem> ().Stop ();
+			}
 			body.AddForce (new Vector3 (-Physics.gravity.x, -Physics.gravity.y, -Physics.gravity.z));
 			if (lifetime == 15)	collider.enabled = true;
 //			print (transform.InverseTransformDirection (body.velocity).x);
@@ -46,5 +64,14 @@ public class MissileScript : MonoBehaviour {
 		print (plane.speed);
 		body.AddForce (transform.right * (maxSpeed/2+plane.speed*2));
 		fired = true;
+		body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+	}
+
+	void OnCollisionEnter(Collision other){
+		explosion.Play ();
+		destroyed = true;
+		print ("HIT");
+
+		lifetime = 0;
 	}
 }
