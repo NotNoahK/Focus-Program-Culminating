@@ -15,10 +15,11 @@ public class MissileScript : MonoBehaviour {
 	public int lifetime = 0;
 	public int maxSpeed;
 	PlaneWrapper plane;
-	public ParticleSystem explosion;
+	public Explosion explosion;
 	bool destroyed = false;
 	/// How long the missile is propelled for
 	public int maxFuel;
+
 
 	// Use this for initialization
 	void Start () {
@@ -68,7 +69,7 @@ public class MissileScript : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		explosion.Play ();
+		explosion.Detonate ();
 		destroyed = true;
 		print ("HIT");
 
