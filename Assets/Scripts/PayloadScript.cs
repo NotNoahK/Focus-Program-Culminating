@@ -47,6 +47,8 @@ public class PayloadScript : MonoBehaviour {
 			}
 			if (lifetime > maxFuel) {
 				engine.GetComponent<ParticleSystem> ().Stop ();
+				//Turn towards prograde vector
+				transform.Rotate(new Vector3(0,0,(Mathf.DeltaAngle (Mathf.Rad2Deg * Mathf.Atan2 (transform.right.y * 10, transform.right.x * 10), Mathf.Rad2Deg * Mathf.Atan2 (body.velocity.y, body.velocity.x))) / 30), Space.World);
 			}
 			body.AddForce (new Vector3 (-Physics.gravity.x, -Physics.gravity.y, -Physics.gravity.z));
 			if (lifetime == 15)	collider.enabled = true;
@@ -54,6 +56,9 @@ public class PayloadScript : MonoBehaviour {
 			if (transform.InverseTransformDirection (body.velocity).x > maxSpeed) {
 				body.AddForce (-transform.right * accel * 2);
 			}
+
+			Debug.DrawLine (transform.position, transform.position + transform.right * 10);
+			Debug.DrawLine (transform.position, transform.position + body.velocity * 10);
 		}
 	}
 
