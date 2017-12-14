@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PayloadType{
+	Missile,Bomb,Fuel
+}
+
+
 public class PayloadScript : MonoBehaviour {
 
 	public GameObject engine;
@@ -9,7 +14,7 @@ public class PayloadScript : MonoBehaviour {
 	public float dropForce;
 	public bool fired = false;
 	public int accel;
-	public string type;
+	public PayloadType type;
 	CapsuleCollider collider;
 	[HideInInspector]
 	public int lifetime = 0;
@@ -46,11 +51,13 @@ public class PayloadScript : MonoBehaviour {
 				body.AddForce (transform.right * accel);
 			}
 			if (lifetime > maxFuel) {
-				engine.GetComponent<ParticleSystem> ().Stop ();
+				if(engine != null) engine.GetComponent<ParticleSystem> ().Stop ();
 				//Turn towards prograde vector
 				transform.Rotate(new Vector3(0,0,(Mathf.DeltaAngle (Mathf.Rad2Deg * Mathf.Atan2 (transform.right.y * 10, transform.right.x * 10), Mathf.Rad2Deg * Mathf.Atan2 (body.velocity.y, body.velocity.x))) / 30), Space.World);
 			}
-			body.AddForce (new Vector3 (-Physics.gravity.x, -Physics.gravity.y, -Physics.gravity.z));
+			if (type == PayloadType.Missile) {
+				body.AddForce (new Vector3 (-Physics.gravity.x, -Physics.gravity.y, -Physics.gravity.z));
+			}
 			if (lifetime == 15)	collider.enabled = true;
 //			print (transform.InverseTransformDirection (body.velocity).x);
 			if (transform.InverseTransformDirection (body.velocity).x > maxSpeed) {
@@ -66,7 +73,7 @@ public class PayloadScript : MonoBehaviour {
 		gameObject.AddComponent<Rigidbody> ();
 		body = gameObject.GetComponent<Rigidbody> ();
 		body.AddForce (-transform.forward * dropForce);
-		engine.GetComponent<ParticleSystem> ().Play ();
+		if(engine != null) engine.GetComponent<ParticleSystem> ().Play ();
 		print (plane.speed);
 		body.AddForce (transform.right * (maxSpeed/2+plane.speed*2));
 		fired = true;
