@@ -48,6 +48,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public float maxRollForce;
 	public float pitchMultiplier;
 	public float maxPitchForce;
+	public float yawMultiplier;
+	public float maxYawForce;
 	public float noseWeight;
 	public float maxLiftForce;
 	public float liftMultiplier;
@@ -119,14 +121,24 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	public void Yaw(float angle){
+		//Calculate force
+		float yawForce = Mathf.Clamp(-angle * yawMultiplier * speed, -maxYawForce, maxYawForce);
+
 		//Left Rudder
 		if (leftRudderPaddle.working) {
 			leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
+
+			body.AddForceAtPosition (-transform.forward * yawForce, leftRudderPaddle.transform.position);
+			Debug.DrawLine (leftRudderPaddle.transform.position, leftRudderPaddle.transform.position-transform.forward*yawForce*10);
 		}
 		//Right Rudder
 		if (rightRudderPaddle.working) {
 			rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
+
+			body.AddForceAtPosition (transform.forward * yawForce, rightRudderPaddle.transform.position);
+			Debug.DrawLine (rightRudderPaddle.transform.position, rightRudderPaddle.transform.position+transform.forward*yawForce*10);
 		}
+
 	}
 
 	public void Roll(float angle){
