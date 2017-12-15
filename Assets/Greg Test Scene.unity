@@ -1973,6 +1973,11 @@ Prefab:
       propertyPath: stallMultiplier
       value: 0.01
       objectReference: {fileID: 0}
+    - target: {fileID: 114962129762840296, guid: b7a0c3f7af9125b42a974182f9c9462c,
+        type: 2}
+      propertyPath: throttleMultiplier
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
   m_IsPrefabParent: 0
