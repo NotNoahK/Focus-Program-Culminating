@@ -31,14 +31,14 @@ public class PayloadScript : MonoBehaviour {
 		collider = GetComponent<CapsuleCollider> ();
 		plane = GetComponentInParent<PlaneWrapper> ();
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(Input.GetKey(KeyCode.Alpha1))
 			Fire();
 		if (destroyed) {
 			lifetime++;
-			if (lifetime == 50) 
+			if (lifetime == 50)
 				gameObject.SetActive (false);
 			transform.Find ("Model").gameObject.SetActive (false);
 			body.velocity = Vector3.zero;

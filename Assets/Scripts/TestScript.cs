@@ -12,7 +12,7 @@ public class TestScript : MonoBehaviour {
 	void Start () {
 		planeWrapper = planeModel.GetComponent<PlaneWrapper> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		keyDelay--;

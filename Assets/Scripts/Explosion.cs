@@ -20,14 +20,14 @@ public class Explosion : MonoBehaviour {
 		explosionMain.startSize = new ParticleSystem.MinMaxCurve (diameter / 2, diameter);
 	}
 
-	void Update(){
+	void FixedUpdate(){
 		if (detonated)
 			counter++;
 		if (counter == 50) {
 			collider.enabled = false;
 		}
 	}
-	
+
 	public void Detonate(){
 		particles.Play ();
 		collider.enabled = true;
