@@ -62,7 +62,7 @@ public class PlaneWrapper : MonoBehaviour {
 		body = GetComponent<Rigidbody> ();
 	}
 
-	void Update(){
+	void FixedUpdate(){
 		vSpeed = body.velocity.y;
 		speed = transform.InverseTransformDirection(body.velocity).x;
 		if (speed < 1)
@@ -221,7 +221,7 @@ public class PlaneWrapper : MonoBehaviour {
 			Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+glideForce*transform.right*10);
 		}
 
-		//Fall nose down code
+		//Spin nose down code
 
 		//Calculate delta angle
 		Vector3 stallForce = new Vector3 (0, 0, (Mathf.DeltaAngle (Mathf.Rad2Deg * Mathf.Atan2 (transform.right.y * 10, transform.right.x * 10), Mathf.Rad2Deg * Mathf.Atan2 (body.velocity.y, body.velocity.x))));
@@ -230,10 +230,11 @@ public class PlaneWrapper : MonoBehaviour {
 		//For equasion to work, stallspeed MUST be 100 or less
 		float curve = 0;
 		if(speed < stallSpeed){
-			curve = -9.07351f * Mathf.Pow (stallSpeed-speed, 0.17202f) + 19.971f;
-			if (curve < 0)	curve = 0;
+			body.AddTorque(stallForce*stallMultiplier);
+//			curve = -9.07351f * Mathf.Pow (stallSpeed-speed, 0.17202f) + 19.971f;
+//			if (curve < 0)	curve = 0;
 		}
-		transform.Rotate(stallForce*stallMultiplier*curve, Space.World);
+
 
 		Debug.DrawLine (transform.position, transform.position + transform.right * 10);
 		Debug.DrawLine (transform.position, transform.position + body.velocity * 10);
