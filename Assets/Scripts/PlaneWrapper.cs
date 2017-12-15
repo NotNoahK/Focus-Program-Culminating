@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlaneWrapper : MonoBehaviour {
 
-	//This is the code that will manage the components of the plane so that other scripts can be more simplified. This will be specialised to this specific plane 
+	//This is the code that will manage the components of the plane so that other scripts can be more simplified. This will be specialised to this specific plane
 
 	//Landing gear
 	public Part noseGear;
@@ -53,6 +53,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public float liftMultiplier;
 	public float throttleMultiplier;
 	public float dragForce;
+	public float stallSpeed;
+	public float stallMultiplier;
 
 
 	// Use this for initialization
@@ -102,23 +104,23 @@ public class PlaneWrapper : MonoBehaviour {
 		//Left Elevator
 		if (leftElevator.working) {
 			leftElevator.transform.localEulerAngles = new Vector3 (0, angle, 0);
-			body.AddForceAtPosition (transform.forward * pitchForce, leftElevator.transform.position);	
+			body.AddForceAtPosition (transform.forward * pitchForce, leftElevator.transform.position);
 			Debug.DrawLine (leftElevator.transform.position, leftElevator.transform.position+transform.forward*pitchForce*10);
 		}
 		//Nose Cone Conterbalance
 		if (leftElevator.working) {
-			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);		
+			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);
 			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position + transform.forward * pitchForce * 5);
 		}
 		if (rightElevator.working) {
-			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);		
+			body.AddForceAtPosition (-transform.forward * pitchForce/2, noseCouterWeight.transform.position);
 			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position + transform.forward * pitchForce * 5);
 		}
 	}
 
 	public void Yaw(float angle){
 		//Left Rudder
-		if (leftRudderPaddle.working) {	
+		if (leftRudderPaddle.working) {
 			leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
 		}
 		//Right Rudder
@@ -218,6 +220,22 @@ public class PlaneWrapper : MonoBehaviour {
 			body.AddForceAtPosition (glideForce*transform.right, rightAileron.transform.position);
 			Debug.DrawLine (rightAileron.transform.position, rightAileron.transform.position+glideForce*transform.right*10);
 		}
+
+		//Fall nose down code
+
+		//Calculate delta angle
+		Vector3 stallForce = new Vector3 (0, 0, (Mathf.DeltaAngle (Mathf.Rad2Deg * Mathf.Atan2 (transform.right.y * 10, transform.right.x * 10), Mathf.Rad2Deg * Mathf.Atan2 (body.velocity.y, body.velocity.x))));
+
+		//Calculate multiplier based on curve https://www.desmos.com/calculator/qcdupodqv1
+		//For equasion to work, stallspeed MUST be 100 or less
+		float curve = 0;
+		if(speed < stallSpeed){
+			curve = -9.07351f * Mathf.Pow (stallSpeed-speed, 0.17202f) + 19.971f;
+			if (curve < 0)	curve = 0;
+		}
+		transform.Rotate(stallForce*stallMultiplier*curve, Space.World);
+
+		Debug.DrawLine (transform.position, transform.position + transform.right * 10);
+		Debug.DrawLine (transform.position, transform.position + body.velocity * 10);
 	}
 }
-
