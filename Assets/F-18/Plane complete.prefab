@@ -8379,7 +8379,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488848031651028}
   m_LocalRotation: {x: -0.7071068, y: 0.00000002980233, z: 0.00000002980233, w: 0.7071068}
-  m_LocalPosition: {x: 1856.4, y: 83.9, z: -87.24}
+  m_LocalPosition: {x: 687, y: 347, z: 0.03}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4493350727043100}
@@ -10474,7 +10474,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1654456969629884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 175.8, y: -124, z: -43.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4655665766915416}
@@ -11231,7 +11231,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1597286070958928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4, z: -0}
+  m_LocalPosition: {x: 167.29979, y: -121.377914, z: -47.872337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4306013731916024}
@@ -12128,7 +12128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1049337951519698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 243.8, z: -0}
+  m_LocalPosition: {x: 167.29979, y: 120.02209, z: -47.872337}
   m_LocalScale: {x: 1, y: -1, z: 1.0000005}
   m_Children:
   - {fileID: 4560582982158850}
@@ -12872,7 +12872,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1507386268057112}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000030517578, y: 114.47789, z: 23.472412}
+  m_LocalPosition: {x: 167.3, y: -9.3, z: -24.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4664481516808550}
@@ -26802,11 +26802,15 @@ MonoBehaviour:
   maxRollForce: 1.2
   pitchMultiplier: 0.5
   maxPitchForce: 2.5
+  yawMultiplier: 0.5
+  maxYawForce: 1.5
   noseWeight: 1
   maxLiftForce: 0.5
   liftMultiplier: 0.0005
-  throttleMultiplier: 50
+  throttleMultiplier: 25
   dragForce: 0
+  stallSpeed: 100
+  stallMultiplier: 0.01
 --- !u!124 &124269042917415972
 Behaviour:
   m_ObjectHideFlags: 1
