@@ -43,6 +43,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public float speed;
 	public float vSpeed;
 
+	float throttle;
+
 
 	public float rollMultiplier;
 	public float maxRollForce;
