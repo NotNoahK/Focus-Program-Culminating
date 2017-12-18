@@ -2,3 +2,4 @@
 Assets/Terrain/New[[:space:]]Terrain.asset filter=lfs diff=lfs merge=lfs -text
 Assets/F-18/Cockpit[[:space:]]Source[[:space:]]Model.dae filter=lfs diff=lfs merge=lfs -text
 Assets/F-18/Sketchup[[:space:]]model.dae filter=lfs diff=lfs merge=lfs -text
+mp_clift_beta.asset filter=lfs diff=lfs merge=lfs -text

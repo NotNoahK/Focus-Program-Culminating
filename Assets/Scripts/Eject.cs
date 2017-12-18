@@ -14,7 +14,7 @@ public class Eject : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (fired) {
 			timer--;
 			if (timer == maxTimer) {
@@ -34,7 +34,7 @@ public class Eject : MonoBehaviour {
 				body.angularDrag = 0.5f;
 			}
 		}
-		
+
 	}
 
 	public void Fire(int fireDelay){
