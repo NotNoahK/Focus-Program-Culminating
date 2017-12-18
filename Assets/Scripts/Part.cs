@@ -8,9 +8,11 @@ public class Part : MonoBehaviour{
 	public bool attached = true;
 	public int health = 500;
 	MeshCollider collider;
+	PlaneWrapper plane;
 
 	void Start (){
 		GetCollider ();
+		plane = GetComponentInParent<PlaneWrapper> ();
 		if (collider != null) {
 			collider.gameObject.AddComponent <PassCollision>();
 			collider.gameObject.GetComponent <PassCollision> ().target = this;
@@ -40,6 +42,8 @@ public class Part : MonoBehaviour{
 		gameObject.AddComponent<Rigidbody> ();
 		working = false;
 		attached = false;
+		GetComponent<Rigidbody> ().velocity = plane.GetComponent<Rigidbody> ().velocity;
+
 	}
 }
 
