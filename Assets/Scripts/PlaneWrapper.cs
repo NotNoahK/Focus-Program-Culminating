@@ -128,15 +128,21 @@ public class PlaneWrapper : MonoBehaviour {
 		if (leftRudderPaddle.working) {
 			leftRudderPaddle.transform.localEulerAngles = new Vector3 (leftRudderPaddle.transform.localEulerAngles.x, leftRudderPaddle.transform.localEulerAngles.y, -angle);
 
-			body.AddForceAtPosition (-transform.forward * yawForce, leftRudderPaddle.transform.position);
-			Debug.DrawLine (leftRudderPaddle.transform.position, leftRudderPaddle.transform.position-transform.forward*yawForce*10);
+			body.AddForceAtPosition (-transform.up * yawForce, leftRudderPaddle.transform.position);
+			Debug.DrawLine (leftRudderPaddle.transform.position, leftRudderPaddle.transform.position+transform.up*yawForce*10);
+
+			body.AddForceAtPosition (-transform.up * -yawForce, noseCouterWeight.transform.position);
+			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position+transform.up*-yawForce*10);
 		}
 		//Right Rudder
 		if (rightRudderPaddle.working) {
 			rightRudderPaddle.transform.localEulerAngles = new Vector3 (rightRudderPaddle.transform.localEulerAngles.x, rightRudderPaddle.transform.localEulerAngles.y, angle);
 
-			body.AddForceAtPosition (transform.forward * yawForce, rightRudderPaddle.transform.position);
-			Debug.DrawLine (rightRudderPaddle.transform.position, rightRudderPaddle.transform.position+transform.forward*yawForce*10);
+			body.AddForceAtPosition (transform.up * yawForce, rightRudderPaddle.transform.position);
+			Debug.DrawLine (rightRudderPaddle.transform.position, rightRudderPaddle.transform.position+transform.up*yawForce*10);
+
+			body.AddForceAtPosition (-transform.up * -yawForce, noseCouterWeight.transform.position);
+			Debug.DrawLine (noseCouterWeight.transform.position, noseCouterWeight.transform.position+transform.up*-yawForce*10);
 		}
 
 	}

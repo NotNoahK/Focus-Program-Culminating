@@ -39,6 +39,6 @@ public class TestScript : MonoBehaviour {
 		planeWrapper.Propel (-Input.GetAxis("Throttle"));
 
 		planeWrapper.Pitch (Input.GetAxis ("Vertical")*-20);
-		planeWrapper.Roll (Input.GetAxis ("Horizontal")*20);
+		planeWrapper.Yaw (Input.GetAxis ("Horizontal")*20);
 	}
 }
