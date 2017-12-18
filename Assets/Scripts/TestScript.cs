@@ -14,14 +14,14 @@ public class TestScript : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		keyDelay--;
 		if(keyDelay < 0){
-			if (Input.GetKeyUp (KeyCode.G) || Input.GetAxis ("Jump") > 0.5) {
+			if (Input.GetAxis("Gear")>0.1) {
 				planeWrapper.ToggleGear ();
 				keyDelay = 50;
 			}
-			if (Input.GetKeyUp (KeyCode.C) || Input.GetAxis ("Fire3") > 0.5) {
+			if (Input.GetKeyUp (KeyCode.C)) {
 				planeWrapper.ToggleCanopy ();
 				keyDelay = 50;
 			}
@@ -32,13 +32,16 @@ public class TestScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyUp (KeyCode.E) || (Input.GetAxis ("Fire1") > 0.5)) {
+		if (Input.GetKeyUp (KeyCode.E)) {
 			planeWrapper.Eject ();
 		}
 
-		planeWrapper.Propel (-Input.GetAxis("Throttle"));
+		planeWrapper.Propel ((-Input.GetAxis("Throttle")-1)/2);
 
-		planeWrapper.Pitch (Input.GetAxis ("Vertical")*-20);
-		planeWrapper.Yaw (Input.GetAxis ("Horizontal")*20);
+		planeWrapper.Pitch (Input.GetAxis ("Pitch")*-20);
+		planeWrapper.Roll (Input.GetAxis ("Roll")*20);
+		planeWrapper.Yaw (Input.GetAxis ("Yaw") * 20);
+
+		InputManager.getAxis (InputManager.Axis.PITCH);
 	}
 }
