@@ -17,7 +17,7 @@ public class TestScript : MonoBehaviour {
 	void FixedUpdate () {
 		keyDelay--;
 		if(keyDelay < 0){
-			if (Input.GetAxis("Gear")>0.1) {
+			if (InputManager.getButtonUp(InputManager.Button.GEAR)) {
 				planeWrapper.ToggleGear ();
 				keyDelay = 50;
 			}
@@ -36,12 +36,10 @@ public class TestScript : MonoBehaviour {
 			planeWrapper.Eject ();
 		}
 
-		planeWrapper.Propel ((-Input.GetAxis("Throttle")-1)/2);
+		planeWrapper.Propel (InputManager.getAxis(InputManager.Axis.THROTTLE));
 
-		planeWrapper.Pitch (Input.GetAxis ("Pitch")*-20);
-		planeWrapper.Roll (Input.GetAxis ("Roll")*20);
-		planeWrapper.Yaw (Input.GetAxis ("Yaw") * 20);
-
-		InputManager.getAxis (InputManager.Axis.PITCH);
+		planeWrapper.Pitch (InputManager.getAxis(InputManager.Axis.PITCH));
+		planeWrapper.Roll (InputManager.getAxis(InputManager.Axis.ROLL));
+		planeWrapper.Yaw (InputManager.getAxis(InputManager.Axis.YAW));
 	}
 }
