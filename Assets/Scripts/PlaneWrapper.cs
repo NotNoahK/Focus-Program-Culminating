@@ -176,7 +176,7 @@ public class PlaneWrapper : MonoBehaviour {
 		if (throttle > target) {
 			throttle -= 1 / (spoolTime * 60);
 		}
-		print (throttle);
+//		print (throttle);
 		//Calculate Force
 		float throttleForce = throttle * throttleMultiplier;
 
