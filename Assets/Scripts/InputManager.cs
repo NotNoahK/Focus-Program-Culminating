@@ -7,9 +7,9 @@ public class InputManager : MonoBehaviour {
 
 	public static InputManager instance;
 
-	public enum Button{FIRE,GEAR};
-	static string[] joyButtons = {"joystick button 4", "joystick button 5"};
-	static KeyCode[] keyButtons = {KeyCode.Alpha1, KeyCode.G};
+	public enum Button{FIRE,GEAR,EJECT};
+	static string[] joyButtons = {"joystick button 4", "joystick button 5","joystick button 7"};
+	static KeyCode[] keyButtons = {KeyCode.Alpha1, KeyCode.G, KeyCode.E};
 
 	public enum Axis{PITCH,ROLL,YAW,THROTTLE};
 	static InputAxis[] axes = new InputAxis[4];
@@ -28,25 +28,19 @@ public class InputManager : MonoBehaviour {
 
 	public static bool getButton(Button button){
 		bool result = Input.GetButton (joyButtons [(int)button]) || Input.GetKey (keyButtons [(int)button]);
-		print(result);
 		return result; 
 	}
 
 	public static bool getButtonUp(Button button){
 		bool result = Input.GetButtonUp (joyButtons [(int)button]) || Input.GetKeyUp (keyButtons [(int)button]);
-		print(result);
 		return result; 
 	}
 
 	public static float getAxis(Axis axis){
 		float result = axes [(int)axis].Get ();
-		print(result);
 		return result;
 	}
 
-	static void Print(string s){
-		print (s);
-	}
 
 }
 
@@ -79,9 +73,6 @@ class InputAxis{
 			result *= -1;
 		}
 		result = Mathf.Clamp ((float) result, (float) min, (float) max);
-		if (name == "Yaw") {
-			Debug.Log (result);//(string) result);
-		}
 		return (float) result;
 	}
 }

@@ -32,7 +32,7 @@ public class TestScript : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyUp (KeyCode.E)) {
+		if (InputManager.getButton(InputManager.Button.EJECT)) {
 			planeWrapper.Eject ();
 		}
 
