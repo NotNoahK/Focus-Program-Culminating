@@ -43,7 +43,7 @@ public class Part : MonoBehaviour{
 		working = false;
 		attached = false;
 		GetComponent<Rigidbody> ().velocity = plane.GetComponent<Rigidbody> ().velocity;
-
+		collider.enabled = true;
 	}
 }
 
