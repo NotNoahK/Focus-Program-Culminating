@@ -43,6 +43,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public float speed;
 	public float vSpeed;
 
+	float throttle;
+
 
 	public float rollMultiplier;
 	public float maxRollForce;
@@ -57,6 +59,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public float dragForce;
 	public float stallSpeed;
 	public float stallMultiplier;
+	/// Time in seconds for engines to spool up
+	public float spoolTime;
 
 
 	// Use this for initialization
@@ -165,7 +169,14 @@ public class PlaneWrapper : MonoBehaviour {
 		}
 	}
 
-	public void Propel(float throttle){
+	public void Propel(float target){
+		if (throttle < target) {
+			throttle += 1 / (spoolTime * 60);
+		}
+		if (throttle > target) {
+			throttle -= 1 / (spoolTime * 60);
+		}
+//		print (throttle);
 		//Calculate Force
 		float throttleForce = throttle * throttleMultiplier;
 

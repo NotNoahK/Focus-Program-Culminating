@@ -34,8 +34,8 @@ public class Part : MonoBehaviour{
 		else collider = GetComponent<MeshCollider> ();
 	}
 
-	public void OnCollisionEnter(Collision collision){
-		print ("Collision");
+	public void OnCollisionEnter(Collider other){
+		Detach ();
 	}
 
 	public void Detach(){
@@ -43,7 +43,7 @@ public class Part : MonoBehaviour{
 		working = false;
 		attached = false;
 		GetComponent<Rigidbody> ().velocity = plane.GetComponent<Rigidbody> ().velocity;
-
+		collider.enabled = true;
 	}
 }
 
