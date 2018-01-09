@@ -34,7 +34,7 @@ public class Part : MonoBehaviour{
 		else collider = GetComponent<MeshCollider> ();
 	}
 
-	public void OnCollisionEnter(Collider other){
+	public void Collision(Collider other){
 		Detach ();
 	}
 
