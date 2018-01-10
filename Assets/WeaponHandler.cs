@@ -21,6 +21,26 @@ public class WeaponHandler : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		if (InputManager.getButtonUp (InputManager.Button.TOGGLE_WEAPONS)) {
+			armed = !armed;
+		}
+
+		if (InputManager.getButtonUp (InputManager.Button.WEAPON_LEFT)) {
+			activePylon--;
+		}		
+		if (InputManager.getButtonUp (InputManager.Button.WEAPON_RIGHT)) {
+			activePylon++;
+		}
+		if (activePylon < 0)
+			activePylon = pylons.Length-1;
+		if (activePylon >= pylons.Length)
+			activePylon = 0;
+		print (activePylon);
+
+		print(pylons[activePylon].type);
+
+		if (InputManager.getButtonUp (InputManager.Button.FIRE) && armed) {
+			pylons [activePylon].Fire ();
+		}
 	}
 }

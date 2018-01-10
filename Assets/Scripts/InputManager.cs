@@ -8,7 +8,7 @@ public class InputManager : MonoBehaviour {
 	public static InputManager instance;
 
 	public enum Button{FIRE,GEAR,EJECT,TOGGLE_WEAPONS,WEAPON_LEFT,WEAPON_RIGHT};
-	static string[] joyButtons = {"joystick button 4", "joystick button 5","joystick button 7"};
+	static string[] joyButtons = {"joystick button 4", "joystick button 5","joystick button 7","joystick button 7","joystick button 7","joystick button 7"};
 	static KeyCode[] keyButtons = {KeyCode.Space, KeyCode.G, KeyCode.E, KeyCode.LeftAlt, KeyCode.LeftBracket, KeyCode.RightBracket};
 
 	public enum Axis{PITCH,ROLL,YAW,THROTTLE};

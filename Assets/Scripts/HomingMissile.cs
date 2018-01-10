@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HomingMissile : MonoBehaviour{
+public class HomingMissile : PayloadScript{
 
 
 	public GameObject engine;
@@ -19,6 +19,7 @@ public class HomingMissile : MonoBehaviour{
 	bool destroyed = false;
 	/// How long the missile is propelled for
 	public int maxFuel;
+	public int ammo = 0;
 
 	public Transform target;
 	public float turnSpeed;
