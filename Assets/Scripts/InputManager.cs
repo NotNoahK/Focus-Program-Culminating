@@ -38,9 +38,6 @@ public class InputManager : MonoBehaviour {
 
 	public static float getAxis(Axis axis){
 		float result = axes [(int)axis].Get ();
-		if (axis == Axis.PITCH) {
-			print (result);
-		}
 		return result;
 	}
 

@@ -29,6 +29,7 @@ public class Helmet : MonoBehaviour {
 		canvas.transform.eulerAngles = new Vector3(camera.transform.eulerAngles.x, rot.y, rot.z);
 
 		speedText.text = plane.speed.ToString().Split('.')[0];
+		altText.text = plane.altitude.ToString().Split('.')[0];
 
 	}
 }

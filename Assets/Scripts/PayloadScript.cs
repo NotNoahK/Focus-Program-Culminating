@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PayloadType{
-	MISSILE,BOMB,FUEL,HOMING_MISSILE
+	MISSILE,BOMB,FUEL,HOMING_MISSILE,EMPTY
 }
 
 
@@ -24,6 +24,7 @@ public class PayloadScript : MonoBehaviour {
 	bool destroyed = false;
 	/// How long the missile is propelled for
 	public int maxFuel;
+	public int ammo = 1;
 
 
 	// Use this for initialization
@@ -69,7 +70,7 @@ public class PayloadScript : MonoBehaviour {
 		}
 	}
 
-	void Fire(){
+	public void Fire(){
 		gameObject.AddComponent<Rigidbody> ();
 		body = gameObject.GetComponent<Rigidbody> ();
 		body.AddForce (-transform.forward * dropForce);
@@ -78,6 +79,7 @@ public class PayloadScript : MonoBehaviour {
 		body.AddForce (transform.right * (maxSpeed/2+plane.speed*2));
 		fired = true;
 		body.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+		ammo--;
 	}
 
 	void OnCollisionEnter(Collision other){

@@ -42,6 +42,7 @@ public class PlaneWrapper : MonoBehaviour {
 
 	public float speed;
 	public float vSpeed;
+	public float altitude;
 
 	float throttle;
 
@@ -70,6 +71,12 @@ public class PlaneWrapper : MonoBehaviour {
 
 	void FixedUpdate(){
 		vSpeed = body.velocity.y;
+		LayerMask mask = ~((1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)|(1<<6)|(1<<7)|(1<<8));
+		RaycastHit hit;
+		Physics.Raycast(transform.position, Vector3.down, out hit ,1000000, mask);
+
+		altitude = hit.distance;
+
 		speed = transform.InverseTransformDirection(body.velocity).x;
 		if (speed < 1)
 			speed = 0;
