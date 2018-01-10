@@ -12,7 +12,12 @@ public class PylonScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		payload = transform.parent.GetComponentInChildren<PayloadScript> ();
-		payload = new Empty ();
+		print (transform.parent.name);
+		if(payload == null) 
+			payload = transform.parent.GetComponentInChildren<HomingMissile> ();
+		if(payload == null) 
+			payload = new Empty ();
+		print (payload.type);
 		type = payload.type;
 		if (ID == -1) {
 			print ("ID not set on"+name);
@@ -34,4 +39,8 @@ public class PylonScript : MonoBehaviour {
 class Empty : PayloadScript{
 	PayloadType type = PayloadType.EMPTY;
 	int ammo = 0;
+
+
+	public void Fire(){
+	}
 }
