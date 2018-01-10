@@ -35,8 +35,6 @@ public class PayloadScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetAxis("Fire") > 0.1)
-			Fire();
 		if (destroyed) {
 			lifetime++;
 			if (lifetime == 50)
