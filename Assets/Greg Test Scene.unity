@@ -526,6 +526,16 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 20418684508405696, guid: b7a0c3f7af9125b42a974182f9c9462c,
+        type: 2}
+      propertyPath: field of view
+      value: 74.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 20418684508405696, guid: b7a0c3f7af9125b42a974182f9c9462c,
+        type: 2}
+      propertyPath: far clip plane
+      value: 6.34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
   m_IsPrefabParent: 0
@@ -1057,82 +1067,6 @@ Prefab:
     - target: {fileID: 4825287595715428, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1513166699985664, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1860804789225018, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1443813612323920, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1480557314614662, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1199633142683656, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1174152066483388, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1509256040890932, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1892283355157594, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1613530965776664, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1766667147591702, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1985870907172758, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1613778545094836, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1714618922575572, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1500728014583726, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898218775131368, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1986768652988244, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1765113996123254, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1902911156944362, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
-      objectReference: {fileID: 0}
-    - target: {fileID: 1088327476248104, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
-      propertyPath: m_TagString
-      value: Invincible
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e474f887aa1b894ab511ce87af98829, type: 2}
