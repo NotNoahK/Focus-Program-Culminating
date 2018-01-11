@@ -13,8 +13,8 @@ public class PylonScript : MonoBehaviour {
 	void Start () {
 		payload = transform.parent.GetComponentInChildren<PayloadScript> ();
 		print (transform.parent.name);
-		if(payload == null) 
-			payload = transform.parent.GetComponentInChildren<HomingMissile> ();
+//		if(payload == null) 
+//			payload = transform.parent.GetComponentInChildren<HomingMissile> ();
 		if(payload == null) 
 			payload = new Empty ();
 		print (payload.type);
