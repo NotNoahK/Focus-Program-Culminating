@@ -4,23 +4,13 @@ using System.Collections;
 public class HomingMissile : PayloadScript{
 
 
-	public GameObject engine;
 	Rigidbody body;
-	public float dropForce;
-	public bool fired = false;
-	public int accel;
-	public PayloadType type = PayloadType.HOMING_MISSILE;
 	CapsuleCollider collider;
 	[HideInInspector]
 	public float startTime = 0;
-	public int maxSpeed;
 	PlaneWrapper plane;
-	public Explosion explosion;
 	bool destroyed = false;
 	/// How long the missile is propelled for
-	public int maxFuel;
-	public int ammo = 0;
-
 	public Transform target;
 	public float turnSpeed;
 
