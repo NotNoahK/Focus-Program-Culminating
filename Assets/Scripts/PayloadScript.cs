@@ -68,7 +68,7 @@ public class PayloadScript : MonoBehaviour {
 		}
 	}
 
-	public void Fire(){
+	public virtual void Fire(){
 		gameObject.AddComponent<Rigidbody> ();
 		body = gameObject.GetComponent<Rigidbody> ();
 		body.AddForce (-transform.forward * dropForce);

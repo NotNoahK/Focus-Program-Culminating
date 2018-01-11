@@ -23,8 +23,6 @@ public class HomingMissile : PayloadScript{
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetKeyDown(KeyCode.Alpha2))
-			Fire();
 		if (destroyed) {
 			if (Time.time-startTime == 1)
 				gameObject.SetActive (false);
@@ -58,7 +56,7 @@ public class HomingMissile : PayloadScript{
 		}
 	}
 
-	void Fire(){
+	public override void Fire(){
 		gameObject.AddComponent<Rigidbody> ();
 		body = gameObject.GetComponent<Rigidbody> ();
 		body.AddForce (-transform.forward * dropForce);
