@@ -3614,6 +3614,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4711884105895672}
+  - component: {fileID: 114052695624215034}
   m_Layer: 0
   m_Name: Pylon
   m_TagString: Untagged
@@ -5018,6 +5019,7 @@ GameObject:
   - component: {fileID: 4493350727043100}
   - component: {fileID: 114962129762840296}
   - component: {fileID: 54846737963338910}
+  - component: {fileID: 114975175094480368}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -26889,10 +26891,21 @@ MonoBehaviour:
   fired: 0
   accel: 400
   type: 3
+  lifetime: 0
+  maxSpeed: 400
+  explosion: {fileID: 114258180848895744}
+  maxFuel: 5000
+  ammo: 0
+  engine: {fileID: 1403995719898136}
+  dropForce: 5
+  fired: 0
+  accel: 400
+  type: 3
   startTime: 0
   maxSpeed: 400
   explosion: {fileID: 114258180848895744}
   maxFuel: 5000
+  ammo: 0
   target: {fileID: 0}
   turnSpeed: 0.1
 --- !u!114 &114015861473097560
@@ -26934,6 +26947,20 @@ MonoBehaviour:
   working: 1
   attached: 1
   health: 500
+--- !u!114 &114052695624215034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457549971723544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a1ea4b2c3b10d4c816ef3eb6d93da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  ammo: 0
+  ID: 0
 --- !u!114 &114059116975556926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -26961,6 +26988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 8
 --- !u!114 &114138034329455148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27099,6 +27127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 6
 --- !u!114 &114297935285288262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27313,6 +27342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 1
 --- !u!114 &114415323316956092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27624,6 +27654,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 3
 --- !u!114 &114733762275283018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27664,6 +27695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 5
 --- !u!114 &114787805246360476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27705,6 +27737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 2
 --- !u!114 &114828183823974146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27780,10 +27813,21 @@ MonoBehaviour:
   fired: 0
   accel: 400
   type: 3
+  lifetime: 0
+  maxSpeed: 400
+  explosion: {fileID: 114541758739672628}
+  maxFuel: 5000
+  ammo: 0
+  engine: {fileID: 1811623277505304}
+  dropForce: 5
+  fired: 0
+  accel: 400
+  type: 3
   startTime: 0
   maxSpeed: 400
   explosion: {fileID: 114541758739672628}
   maxFuel: 5000
+  ammo: 0
   target: {fileID: 0}
   turnSpeed: 0.1
 --- !u!114 &114916773726618948
@@ -27799,6 +27843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   ammo: 0
+  ID: 7
 --- !u!114 &114918653623263500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27907,6 +27952,19 @@ MonoBehaviour:
   stallSpeed: 100
   stallMultiplier: 0.01
   spoolTime: 5
+--- !u!114 &114975175094480368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654456969629884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 457d16dd7870bb6469b4577e6a50703c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activePylon: 0
+  armed: 0
 --- !u!124 &124013578516718834
 Behaviour:
   m_ObjectHideFlags: 1
