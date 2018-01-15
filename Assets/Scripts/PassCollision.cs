@@ -12,6 +12,6 @@ public class PassCollision : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		print ("Collision");
-		target.OnCollisionEnter (other);
+		target.Collision (other);
 	}
 }
