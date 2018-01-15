@@ -22,10 +22,6 @@ public class Part : MonoBehaviour{
 		}
 	}
 
-	void Update(){
-		if(Input.GetKey(KeyCode.Space)) Detach();
-	}
-
 	void GetCollider (){
 		if (GetComponent<MeshCollider> () == null) {
 			if (transform.GetChild (0).GetComponent<MeshCollider> () == null) collider = null;
@@ -34,7 +30,7 @@ public class Part : MonoBehaviour{
 		else collider = GetComponent<MeshCollider> ();
 	}
 
-	public void OnCollisionEnter(Collider other){
+	public void Collision(Collider other){
 		Detach ();
 	}
 

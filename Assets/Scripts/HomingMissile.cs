@@ -1,25 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HomingMissile : MonoBehaviour{
+public class HomingMissile : PayloadScript{
 
 
-	public GameObject engine;
 	Rigidbody body;
-	public float dropForce;
-	public bool fired = false;
-	public int accel;
-	public PayloadType type = PayloadType.HOMING_MISSILE;
 	CapsuleCollider collider;
 	[HideInInspector]
 	public float startTime = 0;
-	public int maxSpeed;
 	PlaneWrapper plane;
-	public Explosion explosion;
 	bool destroyed = false;
 	/// How long the missile is propelled for
-	public int maxFuel;
-
 	public Transform target;
 	public float turnSpeed;
 
@@ -32,8 +23,6 @@ public class HomingMissile : MonoBehaviour{
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetKeyDown(KeyCode.Alpha2))
-			Fire();
 		if (destroyed) {
 			if (Time.time-startTime == 1)
 				gameObject.SetActive (false);
@@ -67,7 +56,7 @@ public class HomingMissile : MonoBehaviour{
 		}
 	}
 
-	void Fire(){
+	public override void Fire(){
 		gameObject.AddComponent<Rigidbody> ();
 		body = gameObject.GetComponent<Rigidbody> ();
 		body.AddForce (-transform.forward * dropForce);
