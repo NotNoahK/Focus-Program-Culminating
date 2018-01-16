@@ -21,7 +21,6 @@ public class WeaponHandler : MonoBehaviour {
 			print (pylon.ID);
 		}
 
-		bullet = new GameObject("bullet");
 	}
 	
 	void Update () {
@@ -47,10 +46,7 @@ public class WeaponHandler : MonoBehaviour {
 			pylons [activePylon].Fire ();
 		}
 		if(InputManager.getButton(InputManager.Button.FIRE_CANNON) && armed){
-			for (int i = 0; i < 10; i++)
-			{
-				Object.Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
-			}
+//			Instantiate(, new Vector3(0, 0, 0), Quaternion.identity);
 		}
 	}
 }
