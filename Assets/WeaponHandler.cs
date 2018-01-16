@@ -49,7 +49,7 @@ public class WeaponHandler : MonoBehaviour {
 		if(InputManager.getButton(InputManager.Button.FIRE_CANNON) && armed){
 			for (int i = 0; i < 10; i++)
 			{
-				Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
+				Object.Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
 			}
 		}
 	}
