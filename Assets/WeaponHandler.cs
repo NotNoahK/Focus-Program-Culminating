@@ -4,10 +4,12 @@ using UnityEngine;
 using System;
 
 public class WeaponHandler : MonoBehaviour {
-
+	
+	public Transform prefab;
 	PylonScript[] pylons;
 	public int activePylon = 5;
 	public bool armed;
+
 
 	void Start () {
 		pylons = GetComponentsInChildren<PylonScript> ();
@@ -18,6 +20,8 @@ public class WeaponHandler : MonoBehaviour {
 		foreach(PylonScript pylon in pylons){
 			print (pylon.ID);
 		}
+
+		bullet = new GameObject("bullet");
 	}
 	
 	void Update () {
@@ -41,6 +45,12 @@ public class WeaponHandler : MonoBehaviour {
 
 		if (InputManager.getButtonUp (InputManager.Button.FIRE) && armed) {
 			pylons [activePylon].Fire ();
+		}
+		if(InputManager.getButton(InputManager.Button.FIRE_CANNON) && armed){
+			for (int i = 0; i < 10; i++)
+			{
+				Object.Instantiate(bullet, new Vector3(0, 0, 0), Quaternion.identity);
+			}
 		}
 	}
 }

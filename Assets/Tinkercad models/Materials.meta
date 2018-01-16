@@ -1,8 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Tinkercad models/Apartment1.zip.meta
+<<<<<<< HEAD
+guid: 117c37d19c5618b4386a312e3d48f5c2
+timeCreated: 1515423132
+licenseType: Free
+=======
+guid: dec5af591f00cea429c70e87b5e7c07d
+timeCreated: 1515424196
+=======
 guid: 3950ebe103a3f2e438a3ee8b368b9a80
 folderAsset: yes
 timeCreated: 1515681790
+>>>>>>> 2d4f62ccbef2e86be2255f6cadc493a3d9a84d41:Assets/Tinkercad models/Materials.meta
 licenseType: Pro
+>>>>>>> 87e93b419e213b520f6093101ef85917a38b001b
 DefaultImporter:
   userData: 
   assetBundleName: 
