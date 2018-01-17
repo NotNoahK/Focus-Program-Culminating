@@ -5,11 +5,11 @@ using System;
 
 public class WeaponHandler : MonoBehaviour {
 	
-	public Transform prefab;
+	public GameObject gun;
 	PylonScript[] pylons;
 	public int activePylon = 5;
 	public bool armed;
-
+	public GameObject bulletHit;
 
 	void Start () {
 		pylons = GetComponentsInChildren<PylonScript> ();
@@ -47,6 +47,14 @@ public class WeaponHandler : MonoBehaviour {
 		}
 		if(InputManager.getButton(InputManager.Button.FIRE_CANNON) && armed){
 //			Instantiate(, new Vector3(0, 0, 0), Quaternion.identity);
+			RaycastHit hit;
+			Physics.Raycast(gun.transform.position, transform.right, out hit, 1000);
+			if (hit.transform != null) {
+				print (hit.transform.name);
+				Debug.DrawLine (Vector3.zero, hit.point);
+				Instantiate(bulletHit, hit.point, new Quaternion(0,0,0,0));
+			}
+			Debug.DrawRay(gun.transform.position, transform.right*1000);
 		}
 	}
 }
