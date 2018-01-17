@@ -31,6 +31,9 @@ public class Part : MonoBehaviour{
 	}
 
 	public void Collision(Collider other){
+		if (gameObject.name == "Fuselage") {
+			plane.Explode ();
+		}
 		Detach ();
 	}
 
