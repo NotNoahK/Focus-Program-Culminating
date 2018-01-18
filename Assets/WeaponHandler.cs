@@ -10,6 +10,7 @@ public class WeaponHandler : MonoBehaviour {
 	public int activePylon = 5;
 	public bool armed;
 	public GameObject bulletHit;
+	public int damage;
 
 	void Start () {
 		pylons = GetComponentsInChildren<PylonScript> ();
@@ -38,9 +39,9 @@ public class WeaponHandler : MonoBehaviour {
 			activePylon = pylons.Length-1;
 		if (activePylon >= pylons.Length)
 			activePylon = 0;
-		print (activePylon);
+//		print (activePylon);
 
-		print(pylons[activePylon].type);
+//		print(pylons[activePylon].type);
 
 		if (InputManager.getButtonUp (InputManager.Button.FIRE) && armed) {
 			pylons [activePylon].Fire ();
@@ -50,9 +51,13 @@ public class WeaponHandler : MonoBehaviour {
 			RaycastHit hit;
 			Physics.Raycast(gun.transform.position, transform.right, out hit, 1000);
 			if (hit.transform != null) {
-				print (hit.transform.name);
+				print (hit.collider.name);
 				Debug.DrawLine (Vector3.zero, hit.point);
 				Instantiate(bulletHit, hit.point, new Quaternion(0,0,0,0));
+				PassCollision hitPart = hit.collider.gameObject.GetComponent<PassCollision> ();
+				if(hitPart != null){
+					hitPart.Shot (damage);
+				}
 			}
 			Debug.DrawRay(gun.transform.position, transform.right*1000);
 		}
