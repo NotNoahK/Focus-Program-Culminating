@@ -227,6 +227,10 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	public void Eject(){
+		Collider[] col = canopy.GetComponentsInChildren<Collider> ();
+		foreach(Collider c in col){
+			c.enabled = false;
+		}
 		canopy.AddComponent<Rigidbody> ();
 		canopy.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0,1000, 10000));
 		frontSeat.GetComponent<Eject> ().Fire (15);
