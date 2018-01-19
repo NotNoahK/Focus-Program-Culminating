@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class PanelScript : MonoBehaviour {
 
 
-	public int testHealth = 500;
-	public int maxTestHealth = 500;
-	public Parts testPart;
+	public PayloadType testPayload;
+	public int ammo;
+
 
 	public enum Parts{
 		WING_LEFT, WING_RIGHT, ELEVATOR_LEFT, ELEVATOR_RIGHT, TAIL, FUSELAGE, NACELLES
@@ -21,6 +21,8 @@ public class PanelScript : MonoBehaviour {
 	public Image tails;
 	public Image[] nacelles;
 	public Image[] fuselage;
+	public Text ammoText;
+	public Text weaponText;
 
 	public void SetHealth(Parts part,int health,int maxHealth){
 		float healthPercent = (float) health / (float) maxHealth;
@@ -60,9 +62,13 @@ public class PanelScript : MonoBehaviour {
 			image.color = new Color (1, healthPercent, healthPercent);
 		}
 	}
+	void SetWeaponData(int ammo,PayloadType weaponType){
+		ammoText.text = ammo+"";
+		weaponText.text = weaponType.ToString();
+	}
 
 	void Update(){
-		SetHealth (testPart, testHealth, maxTestHealth);
+		SetWeaponData (ammo, testPayload);
 	}
 }
                                                                                        
