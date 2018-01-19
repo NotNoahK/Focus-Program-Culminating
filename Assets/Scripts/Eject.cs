@@ -26,7 +26,7 @@ public class Eject : MonoBehaviour {
 				if (timer > 0)
 					body.AddForce (transform.forward*(Mathf.Abs (timer - maxTimer)+10)*50);
 				//Wait until canopy is cleared
-				if (timer == maxTimer - 2)
+				if (timer == maxTimer - 50)
 					GetComponent<MeshCollider> ().enabled = true;
 			}
 			if (timer == 0) {

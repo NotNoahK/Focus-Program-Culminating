@@ -37,6 +37,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public Part rightWing;
 	public GameObject col;
 
+	public Explosion explosion;
+
 
 	Rigidbody body;
 
@@ -63,6 +65,10 @@ public class PlaneWrapper : MonoBehaviour {
 	/// Time in seconds for engines to spool up
 	public float spoolTime;
 
+	bool destroyed = false;
+
+	float destroyedTime;
+
 
 	// Use this for initialization
 	void Start () {
@@ -84,6 +90,12 @@ public class PlaneWrapper : MonoBehaviour {
 		body.AddForceAtPosition (-transform.right * dragForce, noseCouterWeight.transform.position);
 		Lift ();
 		Glide ();
+		if (Time.time - destroyedTime >= 0.3 && destroyed) {
+			Camera[] cameras = GetComponentsInChildren<Camera> ();
+			foreach (Camera camera in cameras) {
+				camera.enabled = false;
+			}
+		}
 	}
 
 	public void ToggleGear(){
@@ -215,6 +227,10 @@ public class PlaneWrapper : MonoBehaviour {
 	}
 
 	public void Eject(){
+		Collider[] col = canopy.GetComponentsInChildren<Collider> ();
+		foreach(Collider c in col){
+			c.enabled = false;
+		}
 		canopy.AddComponent<Rigidbody> ();
 		canopy.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0,1000, 10000));
 		frontSeat.GetComponent<Eject> ().Fire (15);
@@ -275,4 +291,13 @@ public class PlaneWrapper : MonoBehaviour {
 		Debug.DrawLine (transform.position, transform.position + transform.right * 10);
 		Debug.DrawLine (transform.position, transform.position + body.velocity * 10);
 	}
+
+	public void Explode(){
+		if (!destroyed) {
+			explosion.Detonate ();
+			destroyed = true;
+			destroyedTime = Time.time;
+		}
+	}
+
 }
