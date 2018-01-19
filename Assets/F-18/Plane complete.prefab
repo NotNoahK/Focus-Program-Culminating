@@ -2792,6 +2792,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4281009156300002}
+  - component: {fileID: 114382190752129320}
   m_Layer: 0
   m_Name: Front panel
   m_TagString: Untagged
@@ -3833,7 +3834,7 @@ GameObject:
   - component: {fileID: 222495774282389348}
   - component: {fileID: 114928587524230894}
   m_Layer: 8
-  m_Name: Fuselage 2
+  m_Name: Nacelles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7122,7 +7123,7 @@ GameObject:
   - component: {fileID: 222647438518243278}
   - component: {fileID: 114002349898895592}
   m_Layer: 8
-  m_Name: Left Elevator (1)
+  m_Name: Right Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9232,7 +9233,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488848031651028}
   m_LocalRotation: {x: -0.70710695, y: 0.00006902217, z: 0.000068828456, w: 0.70710665}
-  m_LocalPosition: {x: 3238.2, y: 47.5, z: 3649.109}
+  m_LocalPosition: {x: 0, y: 7.2, z: -0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4493350727043100}
@@ -27907,6 +27908,30 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114382190752129320
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1338346817619726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8dc2a67771fed419ca8be53d07d933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftWing: {fileID: 114974897771357664}
+  rightWing: {fileID: 114133281484138148}
+  leftElevator: {fileID: 114165570748963636}
+  rightElevator: {fileID: 114002349898895592}
+  tails: {fileID: 114506878563330586}
+  nacelles:
+  - {fileID: 114928587524230894}
+  - {fileID: 114258028288424376}
+  - {fileID: 114758899208435072}
+  - {fileID: 114295716990882298}
+  fuselage:
+  - {fileID: 114971980894403856}
+  - {fileID: 114790802159592140}
 --- !u!114 &114396394251984898
 MonoBehaviour:
   m_ObjectHideFlags: 1
