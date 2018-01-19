@@ -7,7 +7,7 @@ public class Part : MonoBehaviour{
 	public bool working = true;
 	public bool attached = true;
 	public int health = 500;
-	MeshCollider collider;
+	Collider collider;
 	PlaneWrapper plane;
 
 	void Start (){
@@ -17,20 +17,26 @@ public class Part : MonoBehaviour{
 			collider.gameObject.AddComponent <PassCollision>();
 			collider.gameObject.GetComponent <PassCollision> ().target = this;
 		}
-		if (health <= 0) {
+	}
+
+	void Update(){
+		if (health <= 0&&attached) {
 			Detach ();
 		}
 	}
 
 	void GetCollider (){
-		if (GetComponent<MeshCollider> () == null) {
-			if (transform.GetChild (0).GetComponent<MeshCollider> () == null) collider = null;
-			else collider = transform.GetChild (0).GetComponent<MeshCollider> ();
+		if (GetComponent<Collider> () == null) {
+			if (transform.GetChild (0).GetComponent<Collider> () == null) collider = null;
+			else collider = transform.GetChild (0).GetComponent<Collider> ();
 		}
-		else collider = GetComponent<MeshCollider> ();
+		else collider = GetComponent<Collider> ();
 	}
 
 	public void Collision(Collider other){
+		if (gameObject.name == "Fuselage") {
+			plane.Explode ();
+		}
 		Detach ();
 	}
 
@@ -38,8 +44,16 @@ public class Part : MonoBehaviour{
 		gameObject.AddComponent<Rigidbody> ();
 		working = false;
 		attached = false;
-		GetComponent<Rigidbody> ().velocity = plane.GetComponent<Rigidbody> ().velocity;
+		if (plane != null) {
+			GetComponent<Rigidbody> ().velocity = plane.GetComponent<Rigidbody> ().velocity;
+		} else {
+			GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0,10),Random.Range(0,10),Random.Range(0,10)));
+		}	
 		collider.enabled = true;
+	}
+
+	public void Shot(int damage){
+		health -= damage;
 	}
 }
 

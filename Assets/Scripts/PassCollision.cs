@@ -14,4 +14,8 @@ public class PassCollision : MonoBehaviour {
 		print ("Collision");
 		target.Collision (other);
 	}
+
+	public void Shot (int damage){
+		target.Shot (damage);
+	}
 }
