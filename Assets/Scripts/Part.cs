@@ -6,7 +6,7 @@ public class Part : MonoBehaviour{
 	
 	public bool working = true;
 	public bool attached = true;
-	public int health = 100;
+	public int health = 500;
 	Collider collider;
 	PlaneWrapper plane;
 
