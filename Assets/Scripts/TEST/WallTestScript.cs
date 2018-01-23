@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+///Test script used to control homing missile test target
 public class WallTestScript : MonoBehaviour {
 
 	public float speed;

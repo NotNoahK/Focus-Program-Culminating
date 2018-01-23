@@ -85,6 +85,8 @@ public class HomingMissile : PayloadScript{
 		body.drag = 2.5f;
 		//Set timer
 		startTime = Time.time;
+        //Reduce ammo
+        ammo--;
 	}
 
 	void OnCollisionEnter(Collision other){

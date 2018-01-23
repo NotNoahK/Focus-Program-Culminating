@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+///A replacement for a game controller for testing purposes
 public class TestScript : MonoBehaviour {
 
 	public GameObject planeModel;
