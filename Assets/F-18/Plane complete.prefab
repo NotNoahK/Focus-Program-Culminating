@@ -7239,7 +7239,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4867704267943678}
-  - component: {fileID: 114203469893724330}
   m_Layer: 0
   m_Name: Cockpit
   m_TagString: Untagged
@@ -27630,19 +27629,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114203469893724330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895251051926216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784474a670f06354c89c270776a33e5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hud: {fileID: 1025850516795232}
-  multiplier: 0
 --- !u!114 &114258028288424376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27950,8 +27936,8 @@ MonoBehaviour:
   fuselage:
   - {fileID: 114971980894403856}
   - {fileID: 114790802159592140}
-  ammoText: {fileID: 0}
-  weaponText: {fileID: 0}
+  ammoText: {fileID: 114732795220055904}
+  weaponText: {fileID: 114592965216574074}
 --- !u!114 &114396394251984898
 MonoBehaviour:
   m_ObjectHideFlags: 1

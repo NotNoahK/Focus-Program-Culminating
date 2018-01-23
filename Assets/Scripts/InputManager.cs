@@ -19,6 +19,7 @@ public class InputManager : MonoBehaviour {
 		axes [1] = new InputAxis ("Roll", 0.1, 20, false, 0);
 		axes [2] = new InputAxis ("Yaw", 0.2, 20, false, 0);
 		axes [3] = new InputAxis ("Throttle", 0.1, 0.5, true, 1);
+        print("START "+axes+"\t"+axes[3]);
 		if (instance == null) {
 			instance = this;
 		} else {
@@ -37,6 +38,8 @@ public class InputManager : MonoBehaviour {
 	}
 
 	public static float getAxis(Axis axis){
+        print((int)axis + "\t" + axis.ToString());
+        print(axes[3]);
 		float result = axes [(int)axis].Get ();
 		return result;
 	}
