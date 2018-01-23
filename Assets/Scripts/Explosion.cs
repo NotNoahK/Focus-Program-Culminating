@@ -29,7 +29,7 @@ public class Explosion : MonoBehaviour {
 			counter++;
 		//Disable collider after 50 frames (~1 second)
 		if (counter == 50) {
-			collider.enabled = false
+            collider.enabled = false;
 		}
 	}
 
