@@ -11,8 +11,10 @@ public class WeaponHandler : MonoBehaviour {
 	public bool armed;
 	public GameObject bulletHit;
 	public int damage;
+	PanelScript panel;
 
 	void Start () {
+		panel = GetComponentInChildren<PanelScript> ();
 		pylons = GetComponentsInChildren<PylonScript> ();
 		Array.Sort (pylons, delegate(PylonScript p1, PylonScript p2) {
 			return(p1.ID.CompareTo(p2.ID));
@@ -61,5 +63,6 @@ public class WeaponHandler : MonoBehaviour {
 			}
 			Debug.DrawRay(gun.transform.position, transform.right*1000);
 		}
+		panel.SetWeaponData (pylons [activePylon].ammo, pylons [activePylon].type, armed);
 	}
 }

@@ -19,6 +19,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject rightTail;
 	public Part leftRudderPaddle;
 	public Part rightRudderPaddle;
+	public Part leftTailPart;
+	public Part rightTailPart;
 	//Ailerons
 	public Part leftAileron;
 	public Part rightAileron;
@@ -69,10 +71,20 @@ public class PlaneWrapper : MonoBehaviour {
 
 	float destroyedTime;
 
+	[HideInInspector]
+	public PanelScript panel;
 
 	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody> ();
+		panel = GetComponentInChildren<PanelScript> ();
+		leftWing.type = PanelScript.Parts.WING_LEFT;
+		rightWing.type = PanelScript.Parts.WING_RIGHT;
+		rightElevator.type = PanelScript.Parts.ELEVATOR_RIGHT;
+		leftElevator.type = PanelScript.Parts.ELEVATOR_LEFT;
+		fuselage.type = PanelScript.Parts.FUSELAGE;
+		rightTailPart.type = PanelScript.Parts.TAIL;
+		leftTailPart.type = PanelScript.Parts.TAIL;
 	}
 
 	void FixedUpdate(){

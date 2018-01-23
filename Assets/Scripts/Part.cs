@@ -6,9 +6,12 @@ public class Part : MonoBehaviour{
 	
 	public bool working = true;
 	public bool attached = true;
-	public int health = 500;
+	public int maxHealth = 500;
+//	[HideInInspector]
+	public int health;
 	Collider collider;
 	PlaneWrapper plane;
+	public PanelScript.Parts type;
 
 	void Start (){
 		GetCollider ();
@@ -17,11 +20,14 @@ public class Part : MonoBehaviour{
 			collider.gameObject.AddComponent <PassCollision>();
 			collider.gameObject.GetComponent <PassCollision> ().target = this;
 		}
-	}
+	} 
 
 	void Update(){
 		if (health <= 0&&attached) {
 			Detach ();
+		}
+		if (type != null && plane != null) {
+			plane.panel.SetHealth (type, health, maxHealth);
 		}
 	}
 
@@ -50,6 +56,7 @@ public class Part : MonoBehaviour{
 			GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(0,10),Random.Range(0,10),Random.Range(0,10)));
 		}	
 		collider.enabled = true;
+		health = -1;
 	}
 
 	public void Shot(int damage){
