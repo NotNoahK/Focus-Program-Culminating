@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// A custom input manager because I can't stand the unity default. This code will not be documented because it is mostly self-explanatory
 public class InputManager : MonoBehaviour {
 
 	public static InputManager instance;

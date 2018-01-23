@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// Passes a collision event to target part
 public class PassCollision : MonoBehaviour {
 
+	/// Part to send collision to
 	public Part target;
 
-	void Start(){
-		print("Start " + GetComponent<Collider>());
-	}
-
+	/// Passes shoot event to part
 	void OnTriggerEnter(Collider other){
-		print ("Collision");
 		target.Collision (other);
 	}
 
+	/// Passes shoot event to part
 	public void Shot (int damage){
 		target.Shot (damage);
 	}
