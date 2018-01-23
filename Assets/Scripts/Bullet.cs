@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// Class to handle bullet particles
 public class Bullet: MonoBehaviour {
 
+	/// Time of impact
 	float startTime;
 
 
-	// Use this for initialization
 	void Start () {
 		startTime = Time.time;
 	}
 	
-	// Update is called once per frame
 	void Update () {
+		//Wait one second for the particles to finish
 		if (Time.time - startTime >= 1) {
-			print ("TIME");
+			//Destroy gameobject to avoid clutter
 			Destroy (gameObject);
 		}
 	}

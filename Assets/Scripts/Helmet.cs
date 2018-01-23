@@ -3,31 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// Class to handle heads up display
 public class Helmet : MonoBehaviour {
 
-	Vector3  rot;
-	Vector3 scale;
+	/// Target rotation
+	Vector3 rot;
 	public GameObject camera;
+	/// Gameobject moved to control HUD lines
 	public GameObject gimbal;
+	/// Altitude text
 	public Text altText;
+	/// Speed text
 	public Text speedText;
 	public GameObject canvas;
 	PlaneWrapper plane;
 
-	// Use this for initialization
 	void Start () {
+		//Calibrate target rotation
 		rot = transform.eulerAngles;
 
 		plane = GetComponentInParent<PlaneWrapper> ();
 	}
 	
-	// Update is called once per frame
 	void Update () {
+		//Y axis follows camera
 		rot.y = camera.transform.eulerAngles.y;
-		gimbal.transform.eulerAngles = rot;// new Vector3 (0, transform.eulerAngles.y,  transform.eulerAngles.z);
+		gimbal.transform.eulerAngles = rot;
 
+		//Have canvas follow camera on 2 axes
 		canvas.transform.eulerAngles = new Vector3(camera.transform.eulerAngles.x, rot.y, rot.z);
 
+		//Set speed and altitude texts
 		speedText.text = plane.speed.ToString().Split('.')[0];
 		altText.text = plane.altitude.ToString().Split('.')[0];
 

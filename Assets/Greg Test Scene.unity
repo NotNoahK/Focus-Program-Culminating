@@ -329,7 +329,8 @@ Prefab:
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 1308585558}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114203469893724330, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b7a0c3f7af9125b42a974182f9c9462c, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &777910953
