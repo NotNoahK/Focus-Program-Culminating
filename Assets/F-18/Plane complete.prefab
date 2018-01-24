@@ -3923,7 +3923,7 @@ GameObject:
   - component: {fileID: 222645948025302088}
   - component: {fileID: 114732795220055904}
   m_Layer: 8
-  m_Name: Ammo (1)
+  m_Name: Ammo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7239,7 +7239,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4867704267943678}
-  - component: {fileID: 114203469893724330}
   m_Layer: 0
   m_Name: Cockpit
   m_TagString: Untagged
@@ -7674,7 +7673,7 @@ GameObject:
   - component: {fileID: 222393534172181870}
   - component: {fileID: 114592965216574074}
   m_Layer: 8
-  m_Name: Ammo
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9233,7 +9232,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488848031651028}
   m_LocalRotation: {x: -0.70710695, y: 0.00006902217, z: 0.000068828456, w: 0.70710665}
-  m_LocalPosition: {x: 0, y: 7.2, z: -0}
+  m_LocalPosition: {x: 3238.2, y: 47.5, z: 3649.109}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4493350727043100}
@@ -27382,7 +27381,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114033218072506416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27429,7 +27430,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114052695624215034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27457,7 +27460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114078559737170006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27539,7 +27544,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114147000598509692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27580,7 +27587,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114161492488758408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27620,19 +27629,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114203469893724330
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1895251051926216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 784474a670f06354c89c270776a33e5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hud: {fileID: 1025850516795232}
-  multiplier: 0
 --- !u!114 &114258028288424376
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27790,7 +27786,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114318216665433010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27831,7 +27829,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114329803142330204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27845,7 +27845,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114336018139848010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27859,7 +27861,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114350515349134806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -27932,6 +27936,8 @@ MonoBehaviour:
   fuselage:
   - {fileID: 114971980894403856}
   - {fileID: 114790802159592140}
+  ammoText: {fileID: 114732795220055904}
+  weaponText: {fileID: 114592965216574074}
 --- !u!114 &114396394251984898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28020,7 +28026,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114441408865768546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28034,7 +28042,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114444601413176930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28228,7 +28238,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114592965216574074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28250,7 +28262,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -28261,7 +28273,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ammo
+  m_Text: WEAPON_NAME
 --- !u!114 &114616925259173128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28275,7 +28287,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114665124296657228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28289,7 +28303,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114671835373435136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28303,7 +28319,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114726436425681744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28339,7 +28357,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -28350,7 +28368,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WEAPON_NAME
+  m_Text: 'Ammo
+
+'
 --- !u!114 &114733762275283018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28364,7 +28384,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114747561142057074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28432,7 +28454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114790802159592140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28473,7 +28497,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114820775149267092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28546,7 +28572,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   working: 1
   attached: 1
+  maxHealth: 500
   health: 500
+  type: 0
 --- !u!114 &114892260878132576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -28691,6 +28719,8 @@ MonoBehaviour:
   rightTail: {fileID: 1384489045255854}
   leftRudderPaddle: {fileID: 114329803142330204}
   rightRudderPaddle: {fileID: 114148444503930218}
+  leftTailPart: {fileID: 0}
+  rightTailPart: {fileID: 0}
   leftAileron: {fileID: 114059116975556926}
   rightAileron: {fileID: 114855241789128676}
   canopy: {fileID: 1126784822325848}
@@ -28721,6 +28751,7 @@ MonoBehaviour:
   stallSpeed: 100
   stallMultiplier: 0.01
   spoolTime: 5
+  panel: {fileID: 0}
 --- !u!114 &114971980894403856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -94888,7 +94919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34.26, y: -27.88}
+  m_AnchoredPosition: {x: 1.2, y: -27.9}
   m_SizeDelta: {x: 168.55, y: 44.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224042141236583122
@@ -95056,10 +95087,10 @@ RectTransform:
   - {fileID: 224575019563647444}
   - {fileID: 224401619525468138}
   - {fileID: 224616343364238564}
-  - {fileID: 224514832467592570}
   - {fileID: 224876364389607114}
   - {fileID: 224419262441800364}
   - {fileID: 224646418436816300}
+  - {fileID: 224514832467592570}
   - {fileID: 224240090224568752}
   - {fileID: 224910321997864142}
   - {fileID: 224974634105471180}
@@ -95105,11 +95136,11 @@ RectTransform:
   m_LocalScale: {x: 1.0004547, y: 1.001333, z: 0.9998715}
   m_Children: []
   m_Father: {fileID: 224390320922637152}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.2, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224514832467592570
@@ -95124,7 +95155,7 @@ RectTransform:
   m_LocalScale: {x: 1.0004547, y: 1.001333, z: 0.9998715}
   m_Children: []
   m_Father: {fileID: 224390320922637152}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -95213,7 +95244,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488796954355392}
   m_LocalRotation: {x: -0, y: 0.000000042146848, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1.0004547, y: 1.001333, z: 0.9998715}
   m_Children: []
   m_Father: {fileID: 224298930058516810}
@@ -95221,7 +95252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34.2, y: -7.4}
+  m_AnchoredPosition: {x: 44.1, y: -14.9}
   m_SizeDelta: {x: 168.55, y: 44.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224614946095981032
@@ -95292,7 +95323,7 @@ RectTransform:
   m_LocalScale: {x: 1.000455, y: 1.001333, z: 0.99987185}
   m_Children: []
   m_Father: {fileID: 224390320922637152}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -95349,7 +95380,7 @@ RectTransform:
   m_LocalScale: {x: 1.000455, y: 1.001333, z: 0.99987185}
   m_Children: []
   m_Father: {fileID: 224390320922637152}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

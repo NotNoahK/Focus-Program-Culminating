@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// Script to interface plane control with game controller script
 public class PlaneWrapper : MonoBehaviour {
 
 	//This is the code that will manage the components of the plane so that other scripts can be more simplified. This will be specialised to this specific plane
@@ -19,6 +20,8 @@ public class PlaneWrapper : MonoBehaviour {
 	public GameObject rightTail;
 	public Part leftRudderPaddle;
 	public Part rightRudderPaddle;
+	public Part leftTailPart;
+	public Part rightTailPart;
 	//Ailerons
 	public Part leftAileron;
 	public Part rightAileron;
@@ -29,67 +32,110 @@ public class PlaneWrapper : MonoBehaviour {
 	//Engine
 	public Part leftEngine;
 	public Part rightEngine;
-
+    //Fueselage and nose cone
 	public Part fuselage;
 	public GameObject noseCouterWeight;
-
+    //Wings
 	public Part leftWing;
 	public Part rightWing;
+    /// Center of lift used for downforce
 	public GameObject col;
-
+    /// Explosion triggered on crash
 	public Explosion explosion;
 
 
 	Rigidbody body;
 
+    /// Plane's speed
 	public float speed;
+    /// Plane's vertical speed
 	public float vSpeed;
+    /// Plane's altitude
 	public float altitude;
-
+    /// Current throttle value
 	float throttle;
 
-
+    ///Roll force multiplier
 	public float rollMultiplier;
+    ///Max roll force
 	public float maxRollForce;
+
+    ///Pitch force multiplier
 	public float pitchMultiplier;
+    ///Max pitch force
 	public float maxPitchForce;
+
+    ///Yaw force multiplier
 	public float yawMultiplier;
+    ///Max yaw force;
 	public float maxYawForce;
+
+    ///Nose cone downforce
 	public float noseWeight;
+
+    ///Max lift force
 	public float maxLiftForce;
+    ///Lift force multiplier
 	public float liftMultiplier;
+
+    ///Thorttle force multiplier
 	public float throttleMultiplier;
+    ///Amount of drag
 	public float dragForce;
+
+    ///Minimun stall speed
 	public float stallSpeed;
+    ///Stall force multiplier
 	public float stallMultiplier;
+
 	/// Time in seconds for engines to spool up
 	public float spoolTime;
 
+    ///Plane destoyed flag, true after crash
 	bool destroyed = false;
 
+    ///Time at crash
 	float destroyedTime;
 
+    ///Instrument panel
+	[HideInInspector]
+	public PanelScript panel;
 
 	// Use this for initialization
 	void Start () {
 		body = GetComponent<Rigidbody> ();
+		panel = GetComponentInChildren<PanelScript> ();
+        //Set part types for damage indicator
+		leftWing.type = PanelScript.Parts.WING_LEFT;
+		rightWing.type = PanelScript.Parts.WING_RIGHT;
+		rightElevator.type = PanelScript.Parts.ELEVATOR_RIGHT;
+		leftElevator.type = PanelScript.Parts.ELEVATOR_LEFT;
+		fuselage.type = PanelScript.Parts.FUSELAGE;
+		rightTailPart.type = PanelScript.Parts.TAIL;
+		leftTailPart.type = PanelScript.Parts.TAIL;
 	}
 
 	void FixedUpdate(){
+        //Get vertical speed
 		vSpeed = body.velocity.y;
+        //Create raycast for altitude
 		LayerMask mask = ~((1<<0)|(1<<1)|(1<<2)|(1<<3)|(1<<4)|(1<<5)|(1<<6)|(1<<7)|(1<<8));
 		RaycastHit hit;
 		Physics.Raycast(transform.position, Vector3.down, out hit ,1000000, mask);
-
+        //Get altitude
 		altitude = hit.distance;
-
+        //Get speed
 		speed = transform.InverseTransformDirection(body.velocity).x;
+        //Prevent negative speed readouts
 		if (speed < 1)
 			speed = 0;
+        //Add nose downforce
 		body.AddForceAtPosition (-transform.forward * noseWeight, noseCouterWeight.transform.position);
-		body.AddForceAtPosition (-transform.right * dragForce, noseCouterWeight.transform.position);
+        //Add drag
+        body.AddForceAtPosition (-transform.right * dragForce, noseCouterWeight.transform.position);
 		Lift ();
 		Glide ();
+        //If the plane has been destroyed for a time, disable camera
 		if (Time.time - destroyedTime >= 0.3 && destroyed) {
 			Camera[] cameras = GetComponentsInChildren<Camera> ();
 			foreach (Camera camera in cameras) {
@@ -98,6 +144,7 @@ public class PlaneWrapper : MonoBehaviour {
 		}
 	}
 
+    ///Toggle the landing gear
 	public void ToggleGear(){
 		print ("Toggle Gear");
 		if(noseGear.working)
@@ -108,14 +155,18 @@ public class PlaneWrapper : MonoBehaviour {
 			rightGear.GetComponent<Animator> ().SetTrigger ("Toggle gear");
 	}
 
+    ///Toggle the canopy
 	public void ToggleCanopy(){
 		canopy.GetComponent<Animator> ().SetTrigger ("Toggle canopy");
 	}
 
+    ///Toggle the tailhook
 	public void ToggleHook(){
 		tailHook.GetComponent<Animator> ().SetTrigger ("Toggle hook");
 	}
 
+    ///Apply pitch force to plane
+    ///Angle: Angle of elevators
 	public void Pitch(float angle){
 		//Calculate Force
 		float pitchForce = Mathf.Clamp(-angle * pitchMultiplier * speed, -maxPitchForce, maxPitchForce);
@@ -143,7 +194,9 @@ public class PlaneWrapper : MonoBehaviour {
 		}
 	}
 
-	public void Yaw(float angle){
+    ///Apply yaw force to plane
+    ///Angle: Angle of rudders
+    public void Yaw(float angle){
 		//Calculate force
 		float yawForce = Mathf.Clamp(-angle * yawMultiplier * speed, -maxYawForce, maxYawForce);
 
@@ -170,7 +223,9 @@ public class PlaneWrapper : MonoBehaviour {
 
 	}
 
-	public void Roll(float angle){
+    ///Apply roll force to plane
+    ///Angle: Angle of ailerons
+    public void Roll(float angle){
 		//Calculate Force
 		float rollForce = Mathf.Clamp(-angle * rollMultiplier * speed, -maxRollForce, maxRollForce);
 
@@ -188,14 +243,13 @@ public class PlaneWrapper : MonoBehaviour {
 		}
 	}
 
+    ///Propel the plane
+    ///Target: Target throttle
 	public void Propel(float target){
-		if (throttle < target) {
-			throttle += 1 / (spoolTime * 60);
-		}
-		if (throttle > target) {
-			throttle -= 1 / (spoolTime * 60);
-		}
-//		print (throttle);
+        //Adjust throttle to meet target
+		if (throttle < target) throttle += 1 / (spoolTime * 60);
+		if (throttle > target) throttle -= 1 / (spoolTime * 60);
+
 		//Calculate Force
 		float throttleForce = throttle * throttleMultiplier;
 
@@ -203,11 +257,12 @@ public class PlaneWrapper : MonoBehaviour {
 		if (leftEngine.working) {
 			body.AddForceAtPosition (-transform.right * throttleForce, leftEngine.transform.position);
 			Debug.DrawLine (leftEngine.transform.position, leftEngine.transform.position + (-transform.right * throttleForce) * 1);
-			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
+            //Set particles
+            ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (throttle);
-//			print(throttle);
 			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
 		} else {
+            //Set particles
 			ParticleSystem.MainModule main = leftEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (0);
 			leftEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
@@ -216,27 +271,34 @@ public class PlaneWrapper : MonoBehaviour {
 		if (rightEngine.working) {
 			body.AddForceAtPosition (-transform.right * throttleForce, rightEngine.transform.position);
 			Debug.DrawLine (rightEngine.transform.position, rightEngine.transform.position+(-transform.right * throttleForce)*1);
-			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
+            //Set particles
+            ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs(throttle);
 			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = Mathf.Abs (throttle)*250;
 		} else {
-			ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
+            //Set particles
+            ParticleSystem.MainModule main = rightEngine.GetComponent<ParticleSystem> ().main;
 			main.startLifetime = Mathf.Abs (0);
 			rightEngine.transform.Find ("Point light").gameObject.GetComponent<Light>().intensity = 0;
 		}
 	}
 
+    ///Starts ejection sequence
 	public void Eject(){
+        //Disable canopy colliders
 		Collider[] col = canopy.GetComponentsInChildren<Collider> ();
 		foreach(Collider c in col){
 			c.enabled = false;
 		}
+        //Jettison canopy
 		canopy.AddComponent<Rigidbody> ();
 		canopy.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0,1000, 10000));
+        //Eject the seats with a 5 frame delay between front and back
 		frontSeat.GetComponent<Eject> ().Fire (15);
 		backSeat.GetComponent<Eject> ().Fire (10);
 	}
 
+    ///Apply lift force to the plane
 	void Lift(){
 		//Calculate Force
 		float liftForce = Mathf.Clamp(speed*liftMultiplier, 0, maxLiftForce);
@@ -255,6 +317,7 @@ public class PlaneWrapper : MonoBehaviour {
 		Debug.DrawLine (col.transform.position, col.transform.position-maxLiftForce*1.5f*transform.forward*10);
 	}
 
+    ///Apply glide force to the plane
 	void Glide(){
 		//Calculate Force
 		float glideForce = Mathf.Clamp(-vSpeed, -300, 200);
@@ -276,15 +339,12 @@ public class PlaneWrapper : MonoBehaviour {
 		//Spin nose down code
 
 		//Calculate delta angle
+        ///The angle to turn to match velocity vector
 		Vector3 stallForce = new Vector3 (0, 0, (Mathf.DeltaAngle (Mathf.Rad2Deg * Mathf.Atan2 (transform.right.y * 10, transform.right.x * 10), Mathf.Rad2Deg * Mathf.Atan2 (body.velocity.y, body.velocity.x))));
 
-		//Calculate multiplier based on curve https://www.desmos.com/calculator/qcdupodqv1
-		//For equasion to work, stallspeed MUST be 100 or less
-		float curve = 0;
+        ///Add torque if speed is under stall speed
 		if(speed < stallSpeed){
 			body.AddTorque(stallForce*stallMultiplier);
-//			curve = -9.07351f * Mathf.Pow (stallSpeed-speed, 0.17202f) + 19.971f;
-//			if (curve < 0)	curve = 0;
 		}
 
 
@@ -292,6 +352,7 @@ public class PlaneWrapper : MonoBehaviour {
 		Debug.DrawLine (transform.position, transform.position + body.velocity * 10);
 	}
 
+    ///Destroy the plane after a crash
 	public void Explode(){
 		if (!destroyed) {
 			explosion.Detonate ();
